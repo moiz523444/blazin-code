@@ -12,10 +12,10 @@ const DesignPartner = () => {
           WHY CHOOSE US
         </div>
         <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '1.5rem', color: '#f5f5f5' }}>
-          A UX design partner bringing process, precision, and creative thinking to your product
+          A software development partner bringing velocity, clean architecture, and modern tech to your product
         </h2>
         <p style={{ color: '#888', fontSize: '1rem', marginBottom: '2.5rem' }}>
-          Transparent pricing, senior talent, and strategy-focused approach.
+          Full-stack capabilities, dedicated senior engineers, and sprint-based delivery.
         </p>
         <button style={{ backgroundColor: '#1a1a1a', color: '#fff', padding: '0.8rem 2rem', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #333' }}>
           Book a Call
@@ -111,8 +111,8 @@ const DesignPartner = () => {
             >
               <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#444' }}></div>
               <div style={{ backgroundColor: '#2a2a2a', padding: '0.75rem 1rem', borderRadius: '16px', borderTopLeftRadius: '4px', maxWidth: '80%' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem' }}>Hey!</span>
-                <span style={{ fontSize: '0.85rem', color: '#ccc', lineHeight: 1.4 }}>We need a mobile app for clinicians. Very data-heavy.</span>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem' }}>Hey Blazin Code team!</span>
+                <span style={{ fontSize: '0.85rem', color: '#ccc', lineHeight: 1.4 }}>We need a high-frequency DeFi dashboard and banking web app. Extremely low latency.</span>
               </div>
             </motion.div>
 
@@ -123,10 +123,10 @@ const DesignPartner = () => {
               animate={{ opacity: [0, 1, 1, 0], y: [10, 0, 0, -10] }}
               transition={{ repeat: Infinity, duration: 6, delay: 2, times: [0, 0.1, 0.9, 1] }}
             >
-              <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ff3366' }}></div>
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ff3300' }}></div>
               <div style={{ backgroundColor: '#444', padding: '0.75rem 1rem', borderRadius: '16px', borderTopRightRadius: '4px', maxWidth: '80%' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem', textAlign: 'right' }}>Hi Philip!</span>
-                <span style={{ fontSize: '0.85rem', color: '#eee', lineHeight: 1.4 }}>We've worked in MedTech before. What's the compliance situation?</span>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem', textAlign: 'right' }}>Hi Alex!</span>
+                <span style={{ fontSize: '0.85rem', color: '#eee', lineHeight: 1.4 }}>We've shipped Fireball Finance and Mojek Money. What are your peak transaction volume requirements?</span>
               </div>
             </motion.div>
 
@@ -197,48 +197,48 @@ const DesignPartner = () => {
               {/* Animated Progress Bars */}
               <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                  
-                 {/* Discovery */}
+                 {/* Architecture & Discovery */}
                  <motion.div 
                     style={{ width: '25%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '5%' }}
                     animate={{ x: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                  >
-                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>Discovery →</span>
+                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>Discovery & Arch →</span>
                    <span style={{ fontSize: '0.6rem', color: '#666' }}>01</span>
                  </motion.div>
 
-                 {/* UX Design */}
+                 {/* UI/UX & Prototyping */}
                  <motion.div 
-                    style={{ width: '20%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '25%' }}
+                    style={{ width: '22%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '25%' }}
                     animate={{ x: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
                  >
-                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>UX Design →</span>
+                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>UI/UX System →</span>
                    <span style={{ fontSize: '0.6rem', color: '#666' }}>02</span>
                  </motion.div>
 
-                 {/* UI Design */}
+                 {/* Core Development */}
                  <motion.div 
                     style={{ width: '35%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '35%' }}
                     animate={{ x: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
                  >
-                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>UI Design →</span>
+                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>Full-Stack Engineering →</span>
                    <span style={{ fontSize: '0.6rem', color: '#666' }}>03</span>
                  </motion.div>
 
-                 {/* Animation */}
+                 {/* QA & Security */}
                  <motion.div 
                     style={{ width: '18%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '65%' }}
                     animate={{ x: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
                  >
-                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>Animation →</span>
+                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>QA & Security Testing →</span>
                    <span style={{ fontSize: '0.6rem', color: '#666' }}>04</span>
                  </motion.div>
 
-                 {/* Delivery */}
+                 {/* Cloud Deployment */}
                  <motion.div 
-                    style={{ width: '15%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '80%' }}
+                    style={{ width: '18%', height: '24px', border: '1px solid #444', borderRadius: '4px', backgroundColor: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 0.5rem', marginLeft: '80%' }}
                     animate={{ x: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
                  >
-                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>Delivery →</span>
+                   <span style={{ fontSize: '0.65rem', color: '#ccc' }}>Cloud Deployment →</span>
                    <span style={{ fontSize: '0.6rem', color: '#666' }}>05</span>
                  </motion.div>
 

@@ -57,7 +57,7 @@ const Cursor = () => {
           backgroundColor: '#ffffff', // Pure white for perfect difference blending
           borderRadius: '50%',
           pointerEvents: 'none',
-          zIndex: 9999,
+          zIndex: 999999,
           x: mouseX,
           y: mouseY,
           translateX: '-50%',
@@ -82,7 +82,7 @@ const Cursor = () => {
           border: '2px solid rgba(255, 255, 255, 0.8)', // Pure white border
           borderRadius: '50%',
           pointerEvents: 'none',
-          zIndex: 9998,
+          zIndex: 999998,
           x: smoothX,
           y: smoothY,
           translateX: '-50%',

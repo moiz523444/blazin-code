@@ -13,7 +13,7 @@ const Review = () => {
         border: '1px solid var(--border-color)'
       }}>
         <h3 style={{ fontSize: '2rem', fontWeight: 500, lineHeight: 1.4, marginBottom: '2rem' }}>
-          "Cosmos is an exceptional partner. Their team is extremely professional, creative and responsive. They delivered a high-quality product that exceeded our expectations."
+          "Blazin Code is an exceptional software engineering partner. Their team is extremely professional, agile, and technically proficient. They delivered a robust, high-performance product on schedule."
         </h3>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: '#eee', overflow: 'hidden' }}>

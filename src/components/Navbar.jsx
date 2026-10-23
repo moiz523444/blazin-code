@@ -26,7 +26,7 @@ const Navbar = () => {
       
       <div style={{ display: 'flex', gap: '2rem', fontSize: '0.9rem', fontWeight: 500 }}>
         <a href="#services" onClick={(e) => { e.preventDefault(); window.lenis?.scrollTo('#services', { duration: 1.5 }) }} style={{ transition: 'color 0.2s', cursor: 'none' }} onMouseEnter={(e) => e.target.style.color = 'var(--text-light)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-color)'}>Services</a>
-        <a href="#industries" onClick={(e) => { e.preventDefault(); window.lenis?.scrollTo('#why-choose-us', { duration: 1.5 }) }} style={{ transition: 'color 0.2s', cursor: 'none' }} onMouseEnter={(e) => e.target.style.color = 'var(--text-light)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-color)'}>Industries</a>
+        <a href="#expertise" onClick={(e) => { e.preventDefault(); window.lenis?.scrollTo('#expertise', { duration: 1.5 }) }} style={{ transition: 'color 0.2s', cursor: 'none' }} onMouseEnter={(e) => e.target.style.color = 'var(--text-light)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-color)'}>Expertise</a>
         <a href="#works" onClick={(e) => { e.preventDefault(); window.lenis?.scrollTo('#works', { duration: 1.5 }) }} style={{ transition: 'color 0.2s', cursor: 'none' }} onMouseEnter={(e) => e.target.style.color = 'var(--text-light)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-color)'}>Works</a>
       </div>
 

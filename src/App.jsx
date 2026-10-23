@@ -39,16 +39,9 @@ function App() {
     })
     gsap.ticker.lagSmoothing(0)
 
-    // Hide default cursor globally
-    document.body.style.cursor = 'none';
-    const style = document.createElement('style');
-    style.innerHTML = `* { cursor: none !important; }`;
-    document.head.appendChild(style);
-
     return () => {
       lenis.destroy()
       gsap.ticker.remove(lenis.raf)
-      document.head.removeChild(style);
     }
   }, [])
 

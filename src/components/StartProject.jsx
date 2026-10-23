@@ -20,7 +20,7 @@ const StartProject = () => {
               opacity: 0.9,
               transform: 'scale(0.8)' // slightly scale down so it's not overwhelmingly large
             }}
-            src="https://video.cosmos.studio/cosmonaut-dance_Silly-Dance.webm"
+            src="/dance-character.mp4"
           />
        </div>
 

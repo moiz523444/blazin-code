@@ -3,13 +3,44 @@ import React, { useState, useEffect } from 'react';
 const Footer = () => {
   const [now, setNow] = useState(new Date());
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState({ loading: false, success: false, error: '' });
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, message } = formData;
-    const subject = encodeURIComponent(`New Project Inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:support@blazincode.com?subject=${subject}&body=${body}`;
+    setStatus({ loading: true, success: false, error: '' });
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '8866959f-7157-4b52-8f67-a64c70507ac4', // Web3Forms Access Key for support@blazincode.com
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          from_name: 'Blazin Code Website Lead',
+          subject: `New Client Project Inquiry: ${formData.name}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus({ loading: false, success: true, error: '' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        // Fallback to mailto if access key is pending or network fails
+        window.location.href = `mailto:support@blazincode.com?subject=${encodeURIComponent('Project Inquiry from ' + formData.name)}&body=${encodeURIComponent(formData.message)}`;
+        setStatus({ loading: false, success: true, error: '' });
+      }
+    } catch (err) {
+      // Graceful fallback to mailto
+      window.location.href = `mailto:support@blazincode.com?subject=${encodeURIComponent('Project Inquiry from ' + formData.name)}&body=${encodeURIComponent(formData.message)}`;
+      setStatus({ loading: false, success: true, error: '' });
+    }
   };
 
   useEffect(() => {
@@ -51,25 +82,61 @@ const Footer = () => {
         {/* Left Side: Contact Form */}
         <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
           <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '1.5rem', fontWeight: 600 }}>Let's talk</div>
-          <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Name</label>
-                <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your name" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+          
+          {status.success ? (
+            <div style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', color: '#166534', padding: '1.5rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ fontWeight: 700, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span>✓</span> Message Sent Successfully!
               </div>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Email</label>
-                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="Enter your email" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+              <p style={{ margin: 0, fontSize: '0.85rem', color: '#15803d' }}>
+                Thank you! Our engineering team will review your project details and get back to you within 24 hours.
+              </p>
+              <button 
+                onClick={() => setStatus({ loading: false, success: false, error: '' })} 
+                style={{ marginTop: '0.5rem', background: 'none', border: 'none', color: '#166534', fontWeight: 600, fontSize: '0.8rem', cursor: 'pointer', textAlign: 'left', padding: 0, textDecoration: 'underline' }}
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Name</label>
+                  <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your name" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Email</label>
+                  <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="Enter your email" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+                </div>
               </div>
-            </div>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Message</label>
-              <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="A few words about your project" rows="4" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none', resize: 'none' }}></textarea>
-            </div>
-            <button type="submit" style={{ backgroundColor: '#111', color: '#fff', padding: '1rem 2rem', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 600, border: 'none', cursor: 'pointer', width: 'fit-content', marginTop: '0.5rem' }}>
-              Send message
-            </button>
-          </form>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Message</label>
+                <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="A few words about your project" rows="4" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none', resize: 'none' }}></textarea>
+              </div>
+              <button 
+                type="submit" 
+                disabled={status.loading}
+                style={{ 
+                  backgroundColor: status.loading ? '#555' : '#111', 
+                  color: '#fff', 
+                  padding: '1rem 2rem', 
+                  borderRadius: '8px', 
+                  fontSize: '0.9rem', 
+                  fontWeight: 600, 
+                  border: 'none', 
+                  cursor: status.loading ? 'not-allowed' : 'pointer', 
+                  width: 'fit-content', 
+                  marginTop: '0.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                {status.loading ? 'Sending...' : 'Send message'}
+              </button>
+            </form>
+          )}
         </div>
 
         {/* Right Side: Navigation & Email */}
@@ -96,18 +163,20 @@ const Footer = () => {
             <div>
               <div style={{ fontSize: '0.85rem', color: '#888', marginBottom: '1.5rem', fontWeight: 500 }}>Industries</div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li><a href="#why-choose-us" onClick={(e) => { e.preventDefault(); document.getElementById('why-choose-us')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Education / EdTech</a></li>
-                <li><a href="#why-choose-us" onClick={(e) => { e.preventDefault(); document.getElementById('why-choose-us')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Military Tech</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>FinTech & DeFi</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Cloud & SaaS Platforms</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Luxury E-Commerce</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>CleanTech & Energy</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>PropTech & Architecture</a></li>
               </ul>
             </div>
             {/* Contact Us Column */}
             <div>
               <div style={{ fontSize: '0.85rem', color: '#888', marginBottom: '1.5rem', fontWeight: 500 }}>Contact us:</div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li><a href="https://linkedin.com" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>LinkedIn</a></li>
-                <li><a href="https://behance.net" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Behance</a></li>
-                <li><a href="https://facebook.com" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Facebook</a></li>
-                <li><a href="https://instagram.com" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Instagram</a></li>
+                <li><a href="https://www.linkedin.com/company/blazincode" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>LinkedIn</a></li>
+                <li><a href="https://www.instagram.com/Blazincode/" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Instagram</a></li>
+                <li><a href="https://www.facebook.com/Blazincode/" target="_blank" rel="noreferrer" style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Facebook</a></li>
               </ul>
             </div>
           </div>

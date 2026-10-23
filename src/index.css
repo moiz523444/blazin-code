@@ -27,18 +27,20 @@ body {
 }
 
 /* Custom Scrollbar */
+/* Custom Scrollbar - Sleek Dark Studio */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-color); 
+  background: #0c0c0e; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #ccc; 
+  background: #333338; 
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #aaa; 
+  background: #ff3300; 
 }
 
 /* --- Premium Global Hovers --- */
@@ -68,13 +70,10 @@ a:hover::after {
   transform-origin: bottom left;
 }
 
-/* Exclude block/image links from underline, give them a subtle scale */
-a:has(> img)::after, a:has(> div)::after, a:has(> svg)::after {
-  display: none;
-}
-a:has(> img):hover, a:has(> div):hover, a:has(> svg):hover {
-  opacity: 0.8;
-  transform: scale(0.98);
+/* Block links reset */
+a.block-card {
+  display: block;
+  text-decoration: none;
 }
 
 button {
@@ -128,6 +127,7 @@ html.lenis {
   pointer-events: none;
 }
 
-* {
-  cursor: none !important;
+/* Custom Cursor & interaction polish */
+.custom-cursor-active {
+  cursor: default;
 }

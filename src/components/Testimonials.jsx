@@ -33,33 +33,33 @@ const Testimonials = () => {
 
   const reviews = [
     {
-      text: "Their attention to detail and ability to maintain consistency make the experience feel very professional and smooth.",
-      author: "Co-Founder, Fokus Nachhilfe",
+      text: "Blazin Code engineered our decentralized financial analytics platform with remarkable speed and rock-solid architecture. A top-tier dev team.",
+      author: "Founding Member, Fireball Finance",
       verified: true
     },
     {
-      text: "The redesigned website gives Casavo a significantly stronger digital presence.",
-      author: "Growth Specialist, Casavo",
+      text: "The custom eCommerce experience built by Blazin Code skyrocketed our conversion rate and made our organic brand truly stand out.",
+      author: "VP of Digital, Bathing Culture",
       verified: true
     },
     {
-      text: "Their proactive approach and clear explanations made working with them easy and reassuring.",
-      author: "CEO, Obriy Design Buro",
+      text: "Building an in-browser graphics SaaS is extraordinarily complex. Blazin Code delivered lightning-fast canvas rendering and reliable cloud scale.",
+      author: "Product Lead, Plasfy",
       verified: true
     },
     {
-      text: "Their attention to detail and ability to keep everything consistent made the whole experience feel very professional.",
-      author: "CEO, Freq",
+      text: "Our property booking UX is seamless, responsive, and loved by our guests across New Zealand. Highly recommend their engineering prowess.",
+      author: "Managing Director, Lodg",
       verified: true
     },
     {
-      text: "What impressed us most was how creatively Blazin Code approached every detail.",
-      author: "CEO, Sasquatch Digital",
+      text: "Their attention to architectural detail, clean code, and modern aesthetic transformed our digital presence into an award-worthy showcase.",
+      author: "Principal Architect, Modify",
       verified: true
     },
     {
-      text: "We had a smooth and enjoyable experience working with Blazin Code.",
-      author: "Founder, Profpereklad",
+      text: "Blazin Code took our industrial thermal energy modeling tools and turned them into a powerful, interactive clean-tech platform.",
+      author: "Chief Technology Officer, Exergy3",
       verified: true
     }
   ];

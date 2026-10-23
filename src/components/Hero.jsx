@@ -70,10 +70,10 @@ const Hero = () => {
         paddingBottom: '1.5rem',
         marginBottom: '1.5rem'
       }}>
+        <span>Web & Cloud Architecture</span>
+        <span>Mobile & Cross-Platform</span>
+        <span>Custom SaaS Engineering</span>
         <span>UI/UX Product Design</span>
-        <span>Web Design</span>
-        <span>Branding</span>
-        <span>Development</span>
       </div>
 
       {/* Showreel Video */}
