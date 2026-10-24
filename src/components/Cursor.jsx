@@ -23,11 +23,13 @@ const Cursor = () => {
       const target = e.target;
       // Check if hovering over a clickable element
       if (
-        target.tagName.toLowerCase() === 'a' ||
-        target.tagName.toLowerCase() === 'button' ||
+        target.tagName?.toLowerCase() === 'a' ||
+        target.tagName?.toLowerCase() === 'button' ||
+        target.tagName?.toLowerCase() === 'input' ||
+        target.tagName?.toLowerCase() === 'textarea' ||
         target.closest('a') ||
         target.closest('button') ||
-        window.getComputedStyle(target).cursor === 'pointer'
+        target.getAttribute('role') === 'button'
       ) {
         setIsHovering(true);
       } else {

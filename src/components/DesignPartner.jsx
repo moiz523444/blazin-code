@@ -17,7 +17,10 @@ const DesignPartner = () => {
         <p style={{ color: '#888', fontSize: '1rem', marginBottom: '2.5rem' }}>
           Full-stack capabilities, dedicated senior engineers, and sprint-based delivery.
         </p>
-        <button style={{ backgroundColor: '#1a1a1a', color: '#fff', padding: '0.8rem 2rem', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #333' }}>
+        <button 
+          onClick={() => window.location.href = 'tel:+14153048837'}
+          style={{ backgroundColor: '#1a1a1a', color: '#fff', padding: '0.8rem 2rem', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #333', cursor: 'pointer' }}
+        >
           Book a Call
         </button>
       </div>

@@ -40,7 +40,7 @@ const Navbar = () => {
         cursor: 'none',
         transition: 'transform 0.2s, opacity 0.2s'
       }}
-      onClick={() => window.lenis?.scrollTo('#start-project', { duration: 1.5 })}
+      onClick={() => window.location.href = 'tel:+14153048837'}
       onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
       onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
       >

@@ -94,12 +94,10 @@ const Works = () => {
                transformOrigin: 'top center'
              }}>
                 
-                {/* Left Info (Year & Index) */}
+                {/* Left Info (Index) */}
                 <div className="side-text" style={{ position: 'absolute', left: '5%', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
                    <span style={{ fontSize: '0.75rem', color: '#999', textTransform: 'uppercase', marginBottom: '0.2rem' }}>Index</span>
-                   <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-color)', marginBottom: '1rem' }}>#{String(idx + 1).padStart(2, '0')}</span>
-                   <span style={{ fontSize: '0.75rem', color: '#999', textTransform: 'uppercase', marginBottom: '0.2rem' }}>Year</span>
-                   <span style={{ fontWeight: 600, color: 'var(--text-color)' }}>{project.year}</span>
+                   <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-color)' }}>#{String(idx + 1).padStart(2, '0')}</span>
                 </div>
 
                 {/* Main Card with link navigation */}
