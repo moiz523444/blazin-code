@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Footer.css';
 
 const Footer = () => {
   const [now, setNow] = useState(new Date());
@@ -100,7 +101,7 @@ const Footer = () => {
             </div>
           ) : (
             <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', gap: '1rem' }}>
+              <div className="footer-contact-row">
                 <div style={{ flex: 1 }}>
                   <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem' }}>Name</label>
                   <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Your name" style={{ width: '100%', padding: '1rem', backgroundColor: '#f5f5f5', border: 'none', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
@@ -183,8 +184,8 @@ const Footer = () => {
 
           <div>
             <div style={{ fontSize: '0.85rem', color: '#888', marginBottom: '0.5rem', fontWeight: 500 }}>Let's get down to business:</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.8rem', fontWeight: 500, letterSpacing: '-0.02em', color: '#111' }}>support@blazincode.com</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <span className="footer-email-text">support@blazincode.com</span>
               <button onClick={() => window.location.href = 'mailto:support@blazincode.com'} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
               </button>

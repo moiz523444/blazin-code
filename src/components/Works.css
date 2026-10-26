@@ -128,3 +128,22 @@
     padding: 80px 20px;
   }
 }
+
+/* Works Stacking Sticky Cards Responsive Adjustments */
+@media (max-width: 768px) {
+  .card-wrapper {
+    top: 10vh !important;
+    height: 75vh !important;
+    padding: 0 4% !important;
+  }
+
+  .main-card {
+    width: 100% !important;
+    height: 65vh !important;
+    border-radius: 20px !important;
+  }
+
+  .side-text {
+    display: none !important;
+  }
+}

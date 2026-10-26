@@ -1,17 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import './DesignPartner.css';
 
 const DesignPartner = () => {
 
   return (
-    <section id="why-choose-us" style={{ padding: '8rem 5%', backgroundColor: '#050505', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <section id="why-choose-us" style={{ padding: '6rem 5%', backgroundColor: '#050505', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
       {/* Header Section */}
-      <div style={{ textAlign: 'center', maxWidth: '900px', marginBottom: '5rem' }}>
+      <div style={{ textAlign: 'center', maxWidth: '900px', marginBottom: '4rem' }}>
         <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888', marginBottom: '1.5rem', fontWeight: 600 }}>
           WHY CHOOSE US
         </div>
-        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '1.5rem', color: '#f5f5f5' }}>
+        <h2 style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontWeight: 500, lineHeight: 1.15, letterSpacing: '-0.03em', marginBottom: '1.5rem', color: '#f5f5f5' }}>
           A software development partner bringing velocity, clean architecture, and modern tech to your product
         </h2>
         <p style={{ color: '#888', fontSize: '1rem', marginBottom: '2.5rem' }}>
@@ -26,10 +27,10 @@ const DesignPartner = () => {
       </div>
 
       {/* Grid Layout */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: 'auto auto auto', gap: '1.5rem', width: '100%', maxWidth: '1200px' }}>
+      <div className="partner-grid">
         
         {/* Block 1: Calendar (Left, tall, spans 2 rows) */}
-        <div style={{ gridColumn: '1 / 2', gridRow: '1 / 3', backgroundColor: '#1f1f1f', borderRadius: '24px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.05), transparent)' }}>
+        <div className="partner-block-1" style={{ backgroundColor: '#1f1f1f', borderRadius: '24px', overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column', backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.05), transparent)' }}>
           {/* Background gradient simulating sand dunes */}
           <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '50%', background: 'linear-gradient(to top, #7a5c40, transparent)', opacity: 0.3 }}></div>
           
@@ -98,7 +99,7 @@ const DesignPartner = () => {
         </div>
 
         {/* Block 2: Chat (Top Right, wide) */}
-        <div style={{ gridColumn: '2 / 3', gridRow: '1 / 2', backgroundColor: '#1a1a1a', borderRadius: '24px', padding: '2.5rem', position: 'relative', minHeight: '300px', display: 'flex', flexDirection: 'column' }}>
+        <div className="partner-block-2" style={{ backgroundColor: '#1a1a1a', borderRadius: '24px', padding: '2.5rem', position: 'relative', minHeight: '300px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#666', textAlign: 'center', marginBottom: '2rem', fontWeight: 600 }}>
             REAL-TIME COLLABORATION
           </div>
@@ -137,7 +138,7 @@ const DesignPartner = () => {
         </div>
 
         {/* Block 3: 3D Sphere (Bottom Right, wide) */}
-        <div style={{ gridColumn: '2 / 3', gridRow: '2 / 3', backgroundColor: '#0a0a0a', borderRadius: '24px', padding: '2.5rem', position: 'relative', overflow: 'hidden', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="partner-block-3" style={{ backgroundColor: '#0a0a0a', borderRadius: '24px', padding: '2.5rem', position: 'relative', overflow: 'hidden', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           
           {/* Starfield background */}
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.5 }}></div>
@@ -176,7 +177,7 @@ const DesignPartner = () => {
         </div>
 
         {/* Block 4: Timeline (Full width bottom) */}
-        <div style={{ gridColumn: '1 / 3', gridRow: '3 / 4', backgroundColor: '#1a1a1a', borderRadius: '24px', padding: '2.5rem', overflow: 'hidden' }}>
+        <div className="partner-block-4" style={{ backgroundColor: '#1a1a1a', borderRadius: '24px', padding: '2.5rem', overflow: 'hidden' }}>
            
            {/* Top bar */}
            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>

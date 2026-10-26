@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   // Mouse position
   const mouseX = useMotionValue(0);
@@ -14,6 +15,26 @@ const Cursor = () => {
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    // Detect touch device or mobile screen width
+    const checkIsMobileOrTouch = () => {
+      const isTouch = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+      const isMobileWidth = window.innerWidth <= 768;
+      if (isTouch || isMobileWidth) {
+        setIsTouchDevice(true);
+        return true;
+      }
+      setIsTouchDevice(false);
+      return false;
+    };
+
+    if (checkIsMobileOrTouch()) {
+      return;
+    }
+
+    const handleResize = () => {
+      checkIsMobileOrTouch();
+    };
+    window.addEventListener('resize', handleResize);
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -41,10 +62,15 @@ const Cursor = () => {
     window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, [mouseX, mouseY]);
+
+  if (isTouchDevice) {
+    return null;
+  }
 
   return (
     <>

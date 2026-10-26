@@ -1,0 +1,103 @@
+/* Services CSS for Sticky and Mobile Responsiveness */
+.service-wrapper {
+  position: sticky;
+  top: 15vh;
+  min-height: 45vh;
+  width: 100%;
+  padding: 0 5%;
+}
+
+.service-content {
+  width: 100%;
+  background-color: #050505;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dotted #333;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  transform-origin: top center;
+  gap: 2rem;
+}
+
+.service-left-col {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.service-right-col {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 450px;
+}
+
+.modal-projects-grid {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.5rem;
+  align-content: start;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 900px) {
+  .service-wrapper {
+    position: relative !important;
+    top: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0 5% 2rem !important;
+  }
+
+  .service-content {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .service-left-col,
+  .service-right-col {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .service-right-col .service-img-preview {
+    height: 200px !important;
+  }
+
+  /* Modal responsiveness */
+  .modal-dialog-box {
+    width: 100% !important;
+    height: 96vh !important;
+    border-radius: 16px !important;
+  }
+
+  .modal-header-bar {
+    padding: 1.25rem 1.25rem 1rem !important;
+  }
+
+  .modal-header-bar h2 {
+    font-size: 1.3rem !important;
+  }
+
+  .modal-tabs-bar {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .modal-projects-grid {
+    padding: 1.25rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,21 +36,16 @@ const Hero = () => {
         scrub: true
       }
     });
+
   }, []);
 
   return (
-    <section ref={containerRef} style={{ padding: 'calc(var(--nav-height) + 2rem) 5% 0', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden' }}>
+    <section ref={containerRef} className="hero-section">
 
       {/* Massive Top Text */}
-      <div style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '2rem',
-        perspective: '1000px'
-      }}>
+      <div className="hero-text-container">
         <div ref={textRef} style={{ width: '100%', display: 'flex', justifyContent: 'center', transformOrigin: 'bottom center' }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 150" style={{ width: '100%', height: 'auto', fill: 'var(--text-color)' }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 150" className="hero-svg-title">
             <text x="50%" y="80%" textAnchor="middle" style={{ fontSize: '120px', fontWeight: 900, fontFamily: 'sans-serif', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
               BLAZIN CODE
             </text>
@@ -57,19 +53,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Services Row */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-        fontSize: '0.75rem',
-        textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        color: 'var(--text-light)',
-        borderBottom: '1px solid var(--border-color)',
-        paddingBottom: '1.5rem',
-        marginBottom: '1.5rem'
-      }}>
+      {/* Services Row with responsive wrap */}
+      <div className="hero-services-row">
         <span>Web & Cloud Architecture</span>
         <span>Mobile & Cross-Platform</span>
         <span>Custom SaaS Engineering</span>
@@ -77,18 +62,7 @@ const Hero = () => {
       </div>
 
       {/* Showreel Video */}
-      <div ref={videoRef} style={{
-        width: '100vw',
-        marginLeft: 'calc(-50vw + 50%)',
-        height: '100vh',
-        backgroundColor: '#0d0d0d',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        willChange: 'transform'
-      }}>
+      <div ref={videoRef} className="hero-video-box">
         <video
           autoPlay
           muted

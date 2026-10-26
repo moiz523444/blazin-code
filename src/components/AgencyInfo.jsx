@@ -115,23 +115,23 @@ const AgencyInfo = () => {
   const infiniteTech = [...techStack, ...techStack, ...techStack];
 
   return (
-    <section id="expertise" style={{ padding: '8rem 0', display: 'flex', flexDirection: 'column', gap: '6rem' }}>
+    <section id="expertise" className="agency-info-section" style={{ padding: '5rem 0', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
       
       {/* Top Section: Text + Clutch Widget */}
-      <div style={{ padding: '0 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '4rem' }}>
+      <div style={{ padding: '0 5%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '3rem' }}>
         
         {/* Left Side: Headings */}
-        <div style={{ flex: '1 1 600px', maxWidth: '800px' }}>
-          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-light)', marginBottom: '2rem', fontWeight: 600 }}>
+        <div style={{ flex: '1 1 320px', maxWidth: '800px' }}>
+          <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-light)', marginBottom: '1.5rem', fontWeight: 600 }}>
             OUR TECH STACK & EXPERTISE
           </div>
           
           <h2 style={{
-            fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+            fontSize: 'clamp(2.4rem, 6vw, 5.5rem)',
             fontWeight: 500,
-            lineHeight: 0.95,
+            lineHeight: 1.05,
             letterSpacing: '-0.03em',
-            marginBottom: '2rem',
+            marginBottom: '1.5rem',
             color: 'var(--text-color)'
           }}>
             Software agency<br/>that accelerates your<br/>digital products.
@@ -139,7 +139,7 @@ const AgencyInfo = () => {
           
           <p style={{
             color: 'var(--text-light)',
-            fontSize: '1.1rem',
+            fontSize: '1rem',
             lineHeight: 1.6,
             maxWidth: '500px'
           }}>
@@ -149,9 +149,10 @@ const AgencyInfo = () => {
 
         {/* Right Side: Clutch Widget Replica */}
         <div style={{ 
-          width: '320px', 
+          width: '100%',
+          maxWidth: '360px', 
           backgroundColor: '#fff', 
-          borderRadius: '12px', 
+          borderRadius: '16px', 
           border: '1px solid #e5e5e5',
           overflow: 'hidden',
           boxShadow: '0 10px 30px rgba(0,0,0,0.05)'

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import './About.css';
 
 const About = () => {
 
@@ -15,10 +16,10 @@ const About = () => {
   ];
 
   return (
-    <section id="about" style={{ padding: '6rem 5%', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+    <section id="about" className="about-section">
 
       {/* Left Side (White block) */}
-      <div style={{ flex: '1 1 500px', backgroundColor: '#fff', borderRadius: '24px', padding: '5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div className="about-card-left">
 
         <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#999', marginBottom: '2rem', fontWeight: 600 }}>
           ABOUT US
@@ -40,7 +41,7 @@ const About = () => {
         </p>
 
         {/* Bottom Icons/Text row */}
-        <div style={{ display: 'flex', gap: '3rem', marginTop: 'auto' }}>
+        <div className="about-features-row">
 
           <div style={{ display: 'flex', gap: '1rem' }}>
             <div style={{ marginTop: '4px' }}>
@@ -66,7 +67,7 @@ const About = () => {
       </div>
 
       {/* Right Side (Dark block with Live Animations) */}
-      <div style={{ flex: '1 1 500px', backgroundColor: '#0d0d0d', borderRadius: '24px', padding: '4rem', position: 'relative', overflow: 'hidden', minHeight: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="about-card-right">
 
         {/* Tiny stars background */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }}></div>
@@ -82,8 +83,9 @@ const About = () => {
         </div>
 
         {/* Orbit 1 (Inner) */}
-        <div style={{ position: 'absolute', width: '300px', height: '300px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.05)' }}></div>
+        <div className="orbit-1" style={{ position: 'absolute', width: '300px', height: '300px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.05)' }}></div>
         <motion.div
+          className="orbit-1"
           style={{ position: 'absolute', width: '300px', height: '300px' }}
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
@@ -115,8 +117,9 @@ const About = () => {
         </motion.div>
 
         {/* Orbit 2 (Outer) */}
-        <div style={{ position: 'absolute', width: '450px', height: '450px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.05)' }}></div>
+        <div className="orbit-2" style={{ position: 'absolute', width: '450px', height: '450px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.05)' }}></div>
         <motion.div
+          className="orbit-2"
           style={{ position: 'absolute', width: '450px', height: '450px' }}
           animate={{ rotate: -360 }} // Rotates opposite direction
           transition={{ repeat: Infinity, duration: 35, ease: "linear" }}

@@ -122,14 +122,14 @@ const Testimonials = () => {
       </div>
 
       {/* Animated Big Numbers Section */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '1000px', flexWrap: 'wrap', gap: '3rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '1000px', flexWrap: 'wrap', gap: '2.5rem' }}>
         
-        <div style={{ flex: '1 1 250px' }}>
+        <div style={{ flex: '1 1 200px' }}>
           <div 
             className="count-up-number" 
             data-target="500" 
             data-suffix=""
-            style={{ fontSize: 'clamp(5rem, 10vw, 8rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.05em', color: '#111', marginBottom: '1rem' }}
+            style={{ fontSize: 'clamp(3.8rem, 10vw, 8rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.05em', color: '#111', marginBottom: '0.75rem' }}
           >
             0
           </div>
@@ -138,12 +138,12 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div style={{ flex: '1 1 250px' }}>
+        <div style={{ flex: '1 1 200px' }}>
           <div 
             className="count-up-number" 
             data-target="12" 
             data-suffix=""
-            style={{ fontSize: 'clamp(5rem, 10vw, 8rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.05em', color: '#111', marginBottom: '1rem' }}
+            style={{ fontSize: 'clamp(3.8rem, 10vw, 8rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.05em', color: '#111', marginBottom: '0.75rem' }}
           >
             0
           </div>
@@ -152,12 +152,12 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <div style={{ flex: '1 1 250px' }}>
+        <div style={{ flex: '1 1 200px' }}>
           <div 
             className="count-up-number" 
             data-target="60" 
             data-suffix="+"
-            style={{ fontSize: 'clamp(5rem, 10vw, 8rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.05em', color: '#111', marginBottom: '1rem' }}
+            style={{ fontSize: 'clamp(3.8rem, 10vw, 8rem)', fontWeight: 500, lineHeight: 1, letterSpacing: '-0.05em', color: '#111', marginBottom: '0.75rem' }}
           >
             0+
           </div>

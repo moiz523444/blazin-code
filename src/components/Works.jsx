@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projectsData } from '../data/projects';
+import './Works.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,7 +58,7 @@ const Works = () => {
   return (
     <section ref={containerRef} id="works" style={{ position: 'relative', paddingBottom: '10vh', backgroundColor: 'var(--bg-color)' }}>
        {/* Title */}
-       <div style={{ padding: '8rem 5% 3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem' }}>
+       <div style={{ padding: '4rem 5% 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <div style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-light)', fontWeight: 600, marginBottom: '0.5rem' }}>
             Flagship Industry Case Studies (4)

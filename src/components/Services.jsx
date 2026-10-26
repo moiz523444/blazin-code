@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projectsData } from '../data/projects';
+import './Services.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,25 +79,31 @@ const Services = () => {
   ];
 
   useEffect(() => {
-    const cards = gsap.utils.toArray('.service-wrapper');
+    let mm = gsap.matchMedia();
 
-    cards.forEach((card, i) => {
-      if (i !== cards.length - 1) {
-        const innerContent = card.querySelector('.service-content');
+    mm.add("(min-width: 901px)", () => {
+      const cards = gsap.utils.toArray('.service-wrapper');
 
-        gsap.to(innerContent, {
-          scale: 0.95,
-          opacity: 0.3,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 15%",
-            endTrigger: cards[i + 1],
-            end: "top 35%",
-            scrub: true,
-          }
-        });
-      }
+      cards.forEach((card, i) => {
+        if (i !== cards.length - 1) {
+          const innerContent = card.querySelector('.service-content');
+
+          gsap.to(innerContent, {
+            scale: 0.95,
+            opacity: 0.3,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 15%",
+              endTrigger: cards[i + 1],
+              end: "top 35%",
+              scrub: true,
+            }
+          });
+        }
+      });
     });
+
+    return () => mm.revert();
   }, []);
 
   // Filter projects for the modal (or show all if general)
@@ -163,7 +170,7 @@ const Services = () => {
             }}>
 
               {/* Left Side (Title & Tags) */}
-              <div style={{ width: '45%', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div className="service-left-col">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#ff3300', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', fontWeight: 700 }}>
                     {service.num}
@@ -206,8 +213,8 @@ const Services = () => {
               </div>
 
               {/* Right Side (Image & Desc) */}
-              <div style={{ width: '45%', display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '450px' }}>
-                <div style={{ 
+              <div className="service-right-col">
+                <div className="service-img-preview" style={{ 
                   width: '100%', 
                   height: '240px', 
                   borderRadius: '16px', 
@@ -273,6 +280,7 @@ const Services = () => {
           }}
         >
           <div 
+            className="modal-dialog-box"
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
@@ -302,7 +310,7 @@ const Services = () => {
             }}></div>
 
             {/* Header */}
-            <div style={{
+            <div className="modal-header-bar" style={{
               padding: '2rem 2.5rem 1.25rem',
               borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
               display: 'flex',
@@ -353,7 +361,7 @@ const Services = () => {
             </div>
 
             {/* Category Filter Tabs */}
-            <div style={{
+            <div className="modal-tabs-bar" style={{
               padding: '0.85rem 2.5rem',
               display: 'flex',
               gap: '0.5rem',
@@ -402,6 +410,7 @@ const Services = () => {
 
             {/* Scrollable Projects Grid */}
             <div 
+              className="modal-projects-grid"
               data-lenis-prevent="true"
               onWheel={(e) => e.stopPropagation()}
               style={{

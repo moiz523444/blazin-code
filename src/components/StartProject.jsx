@@ -28,10 +28,10 @@ const StartProject = () => {
        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, transparent 30%, #000 90%)', zIndex: 2, pointerEvents: 'none' }}></div>
        
        {/* Foreground Content */}
-       <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+       <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 5%' }}>
           
           <motion.h1 
-            style={{ fontSize: 'clamp(3.5rem, 7vw, 6.5rem)', fontWeight: 500, color: '#f5f5f5', lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '2.5rem' }}
+            style={{ fontSize: 'clamp(2.4rem, 7vw, 6.5rem)', fontWeight: 500, color: '#f5f5f5', lineHeight: 1.1, letterSpacing: '-0.04em', marginBottom: '2.5rem' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

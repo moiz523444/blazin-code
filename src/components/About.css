@@ -1,0 +1,79 @@
+.about-section {
+  padding: 5rem 5%;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-card-left {
+  flex: 1 1 450px;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-card-right {
+  flex: 1 1 450px;
+  background-color: #0d0d0d;
+  border-radius: 24px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-features-row {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 3rem 4% !important;
+    gap: 1.5rem !important;
+  }
+
+  .about-card-left {
+    padding: 2.5rem 1.5rem !important;
+    flex-basis: 100% !important;
+  }
+
+  .about-card-left h2 {
+    font-size: 2rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .about-card-left p {
+    font-size: 0.95rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .about-features-row {
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  .about-card-right {
+    min-height: 380px !important;
+    padding: 1.5rem !important;
+    flex-basis: 100% !important;
+  }
+
+  .orbit-1 {
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  .orbit-2 {
+    width: 320px !important;
+    height: 320px !important;
+  }
+}
