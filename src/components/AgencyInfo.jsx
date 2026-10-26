@@ -167,8 +167,8 @@ const AgencyInfo = () => {
           <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
               <div style={{ backgroundColor: '#111', color: '#fff', padding: '0.25rem 0.75rem', borderRadius: '20px', fontWeight: 600 }}>5.0</div>
-              <div style={{ color: '#ff3366', letterSpacing: '0.1em', fontSize: '0.9rem' }}>★★★★★</div>
-              <div style={{ color: '#0066cc', fontSize: '0.85rem' }}>20 reviews</div>
+              <div style={{ color: '#1664f6', letterSpacing: '0.1em', fontSize: '0.9rem' }}>★★★★★</div>
+              <div style={{ color: '#1664f6', fontSize: '0.85rem', fontWeight: 600 }}>20 reviews</div>
             </div>
             
             {['Engineering', 'Velocity', 'Code Quality', 'Reliability'].map((item, i) => (
@@ -178,7 +178,7 @@ const AgencyInfo = () => {
                   <span style={{ fontWeight: 600 }}>5.0</span>
                 </div>
                 <div style={{ display: 'flex', gap: '2px' }}>
-                  {[1,2,3,4,5].map(bar => <div key={bar} style={{ height: '4px', flex: 1, backgroundColor: '#ff3366', borderRadius: '2px' }}></div>)}
+                  {[1,2,3,4,5].map(bar => <div key={bar} style={{ height: '4px', flex: 1, background: 'linear-gradient(90deg, #1664f6, #38bdf8)', borderRadius: '2px' }}></div>)}
                 </div>
               </div>
             ))}

@@ -29,36 +29,124 @@ const Navbar = () => {
         backdropFilter: 'blur(12px)',
         borderBottom: '1px solid var(--border-color)'
       }}>
-        {/* Brand Logo */}
+        {/* Brand Logo with Image */}
         <div 
           onClick={() => handleNavClick(0)}
-          style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em', textTransform: 'uppercase', cursor: 'pointer', zIndex: 1001 }}
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.75rem', 
+            cursor: 'pointer', 
+            zIndex: 1001 
+          }}
         >
-          BLAZIN CODE
+          <img 
+            src="/logo-clean.png" 
+            alt="Blazin Code" 
+            style={{ 
+              height: '38px', 
+              width: 'auto', 
+              objectFit: 'contain',
+              display: 'block'
+            }} 
+          />
         </div>
         
-        {/* Desktop Nav Links */}
-        <div className="desktop-nav-links" style={{ display: 'flex', gap: '2rem', fontSize: '0.9rem', fontWeight: 500 }}>
-          <a href="#services" onClick={(e) => { e.preventDefault(); handleNavClick('#services') }} style={{ transition: 'color 0.2s' }}>Services</a>
-          <a href="#expertise" onClick={(e) => { e.preventDefault(); handleNavClick('#expertise') }} style={{ transition: 'color 0.2s' }}>Expertise</a>
-          <a href="#works" onClick={(e) => { e.preventDefault(); handleNavClick('#works') }} style={{ transition: 'color 0.2s' }}>Works</a>
+        {/* Desktop Nav Links with Floating Glass Capsule */}
+        <div 
+          className="desktop-nav-links" 
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            gap: '0.4rem', 
+            fontSize: '0.88rem', 
+            fontWeight: 500,
+            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            padding: '0.35rem 0.5rem',
+            borderRadius: '50px',
+            border: '1px solid rgba(0, 0, 0, 0.06)',
+            boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.03)'
+          }}
+        >
+          {[
+            { href: '#services', label: 'Services' },
+            { href: '#expertise', label: 'Expertise' },
+            { href: '#works', label: 'Works' }
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={(e) => { e.preventDefault(); handleNavClick(item.href); }}
+              className="navbar-link-pill"
+              style={{
+                padding: '0.45rem 1.15rem',
+                borderRadius: '50px',
+                color: 'var(--text-color)',
+                textDecoration: 'none',
+                position: 'relative',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#ffffff';
+                e.currentTarget.style.color = '#1664f6';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(22, 100, 246, 0.15), 0 1px 3px rgba(0,0,0,0.06)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--text-color)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <span>{item.label}</span>
+            </a>
+          ))}
         </div>
 
-        {/* Desktop Book a Call CTA */}
+        {/* Desktop Book a Call CTA - Ultra Premium Gradient & Inner Sheen */}
         <button 
-          className="desktop-call-btn"
+          className="desktop-call-btn btn-magnetic"
           style={{
-            backgroundColor: 'var(--btn-bg)',
-            color: 'var(--btn-text)',
-            padding: '0.65rem 1.4rem',
+            position: 'relative',
+            background: 'linear-gradient(135deg, #1664f6 0%, #0b4bcc 100%)',
+            color: '#ffffff',
+            padding: '0.65rem 1.45rem',
             borderRadius: '50px',
-            fontWeight: 500,
+            fontWeight: 600,
             fontSize: '0.85rem',
-            transition: 'transform 0.2s, opacity 0.2s'
+            letterSpacing: '0.01em',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
+            boxShadow: '0 8px 24px -4px rgba(22, 100, 246, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+            e.currentTarget.style.boxShadow = '0 14px 30px -4px rgba(22, 100, 246, 0.65), 0 0 20px rgba(56, 189, 248, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(22, 100, 246, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35)';
           }}
           onClick={() => window.location.href = 'tel:+14153048837'}
         >
-          Book a Call
+          {/* Subtle Live Green Pulse Dot inside Button */}
+          <span style={{
+            width: '7px',
+            height: '7px',
+            borderRadius: '50%',
+            backgroundColor: '#4ade80',
+            boxShadow: '0 0 8px #4ade80',
+            display: 'inline-block'
+          }} />
+          <span>Book a Call</span>
+          <span style={{ fontSize: '0.9rem', transform: 'translateX(0)', transition: 'transform 0.2s ease' }}>↗</span>
         </button>
 
         {/* Mobile Hamburger Button */}
@@ -156,13 +244,13 @@ const Navbar = () => {
             }}
             style={{
               marginTop: '1rem',
-              backgroundColor: '#ff3300',
+              backgroundColor: '#1664f6',
               color: '#fff',
               padding: '1rem 2.5rem',
               borderRadius: '50px',
               fontSize: '1rem',
               fontWeight: 700,
-              boxShadow: '0 10px 25px rgba(255, 51, 0, 0.4)'
+              boxShadow: '0 10px 25px rgba(22, 100, 246, 0.4)'
             }}
           >
             Book a Call ↗

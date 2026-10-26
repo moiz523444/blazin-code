@@ -42,7 +42,7 @@ const Marquee = () => {
         {items.map((item, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '6rem' }}>
             <span>{item}</span>
-            <span style={{ fontSize: '1.5rem', color: '#ff3366' }}>✦</span>
+            <span style={{ fontSize: '1.5rem', color: 'var(--brand-cyan, #38bdf8)' }}>✦</span>
           </div>
         ))}
       </motion.div>

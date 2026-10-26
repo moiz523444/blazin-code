@@ -73,10 +73,56 @@ const Works = () => {
             e.preventDefault();
             window.lenis ? window.lenis.scrollTo('#services', { duration: 1.2 }) : document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
           }}
-          style={{ fontSize: '0.85rem', color: '#fff', backgroundColor: '#111', border: '1px solid var(--border-color)', padding: '0.6rem 1.2rem', borderRadius: '25px', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
+          className="btn-magnetic"
+          style={{ 
+            fontSize: '0.88rem', 
+            color: '#ffffff', 
+            background: 'linear-gradient(135deg, #11141a 0%, #0d0f14 100%)', 
+            border: '1px solid rgba(22, 100, 246, 0.35)', 
+            padding: '0.65rem 1.4rem', 
+            borderRadius: '50px', 
+            textDecoration: 'none', 
+            fontWeight: 600, 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '0.65rem', 
+            cursor: 'pointer',
+            boxShadow: '0 8px 24px -4px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.8)';
+            e.currentTarget.style.boxShadow = '0 12px 30px -4px rgba(22, 100, 246, 0.5), 0 0 20px rgba(56, 189, 248, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2)';
+            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(22, 100, 246, 0.35)';
+            e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1)';
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          }}
         >
-          <span>Explore All 10 Projects in Services</span>
-          <span style={{ color: '#ff3300' }}>↓</span>
+          <span>Explore All</span>
+          <span style={{ 
+            backgroundColor: '#1664f6', 
+            color: '#fff', 
+            fontSize: '0.72rem', 
+            fontWeight: 700, 
+            padding: '0.15rem 0.5rem', 
+            borderRadius: '20px',
+            boxShadow: '0 0 10px rgba(22, 100, 246, 0.6)'
+          }}>
+            10 Projects
+          </span>
+          <span>in Services</span>
+          <span style={{ 
+            color: '#38bdf8', 
+            fontSize: '1rem', 
+            fontWeight: 700,
+            display: 'inline-block',
+            transition: 'transform 0.2s ease'
+          }}>
+            ↓
+          </span>
         </a>
       </div>
 
@@ -130,19 +176,19 @@ const Works = () => {
                      zIndex: 2, 
                      display: 'flex', 
                      alignItems: 'center', 
-                     backgroundColor: 'rgba(0,0,0,0.65)', 
+                     backgroundColor: 'rgba(5, 15, 30, 0.75)', 
                      backdropFilter: 'blur(16px)', 
                      padding: '0.6rem 1.4rem', 
                      borderRadius: '50px', 
                      color: '#fff', 
                      fontSize: '0.85rem',
-                     border: '1px solid rgba(255,255,255,0.2)',
-                     boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+                     border: '1px solid rgba(22, 100, 246, 0.4)',
+                     boxShadow: '0 8px 32px rgba(22, 100, 246, 0.25)',
                      whiteSpace: 'nowrap'
                    }}>
                       <span style={{ fontWeight: 700, marginRight: '0.75rem', letterSpacing: '-0.01em' }}>{project.title}</span> 
                       <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span> 
-                      <span style={{ marginLeft: '0.75rem', color: '#4ade80', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <span style={{ marginLeft: '0.75rem', color: '#38bdf8', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                         Visit Live ↗
                       </span>
                    </div>

@@ -9,6 +9,10 @@
   --nav-height: 80px;
   --btn-bg: #0f1011;
   --btn-text: #ffffff;
+  --brand-blue: #1664f6;
+  --brand-blue-hover: #0d52db;
+  --brand-cyan: #38bdf8;
+  --brand-glow: rgba(22, 100, 246, 0.35);
 }
 
 /* Only hide mouse cursor on desktop pointer devices, never on touch/mobile */
@@ -59,7 +63,7 @@ body {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff3300; 
+  background: #1664f6; 
 }
 
 /* --- Premium Global Hovers --- */
@@ -95,26 +99,46 @@ a.block-card {
   text-decoration: none;
 }
 
+/* --- Premium Global Buttons & Interactive Elements --- */
 button {
   font-family: inherit;
   cursor: pointer;
   border: none;
   background: none;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  will-change: transform, box-shadow;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform, box-shadow, filter;
+  outline: none;
 }
 
-button:hover {
-  transform: translateY(-2px) scale(1.03);
-  filter: brightness(1.1);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
+/* Subtle universal click feedback */
 button:active {
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: scale(0.96) !important;
   filter: brightness(0.95);
+}
+
+/* Luxury magnetic-feel button helper class */
+.btn-magnetic {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-magnetic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.btn-magnetic:hover::before {
+  left: 100%;
 }
 
 /* Make all sections seamless edge-to-edge */

@@ -41,26 +41,29 @@ const StartProject = () => {
           </motion.h1>
           
           <motion.button 
+            className="btn-magnetic"
             style={{ 
-              backgroundColor: 'rgba(255,255,255,0.05)', 
-              backdropFilter: 'blur(10px)', 
-              color: '#fff', 
-              border: '1px solid rgba(255,255,255,0.15)', 
-              padding: '1.2rem 3rem', 
+              position: 'relative',
+              background: 'linear-gradient(135deg, #1d6bf3 0%, #0d4bcc 100%)', 
+              color: '#ffffff', 
+              border: '1px solid rgba(255, 255, 255, 0.35)', 
+              padding: '1.25rem 3.4rem', 
               borderRadius: '50px', 
-              fontSize: '0.9rem', 
-              fontWeight: 600, 
+              fontSize: '1rem', 
+              fontWeight: 700, 
               cursor: 'pointer',
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', // Smooth Apple-like easing
-              boxShadow: '0px 4px 20px rgba(0,0,0,0.5)'
+              letterSpacing: '0.02em',
+              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              boxShadow: '0 20px 50px -10px rgba(22, 100, 246, 0.7), 0 0 30px rgba(56, 189, 248, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.5)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.85rem'
             }}
             onClick={() => window.location.href = 'mailto:support@blazincode.com'}
             whileHover={{ 
-              backgroundColor: '#fff', 
-              color: '#000', 
-              scale: 1.05, 
-              boxShadow: '0px 15px 35px rgba(255,255,255,0.25)',
-              borderColor: '#fff'
+              scale: 1.06, 
+              boxShadow: '0 25px 65px -10px rgba(22, 100, 246, 0.9), 0 0 45px rgba(56, 189, 248, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.7)',
+              borderColor: '#ffffff'
             }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0 }}
@@ -68,7 +71,17 @@ const StartProject = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-             Get in Touch
+             {/* Small glowing beacon inside CTA */}
+             <span style={{ 
+               width: '8px', 
+               height: '8px', 
+               borderRadius: '50%', 
+               backgroundColor: '#38bdf8', 
+               boxShadow: '0 0 10px #38bdf8',
+               display: 'inline-block' 
+             }}></span>
+             <span>Get in Touch</span>
+             <span style={{ fontSize: '1.1rem', fontWeight: 400 }}>→</span>
           </motion.button>
        </div>
 

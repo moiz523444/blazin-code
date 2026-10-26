@@ -119,9 +119,9 @@ const Footer = () => {
                 type="submit" 
                 disabled={status.loading}
                 style={{ 
-                  backgroundColor: status.loading ? '#555' : '#111', 
+                  backgroundColor: status.loading ? '#555' : '#1664f6', 
                   color: '#fff', 
-                  padding: '1rem 2rem', 
+                  padding: '1rem 2.2rem', 
                   borderRadius: '8px', 
                   fontSize: '0.9rem', 
                   fontWeight: 600, 
@@ -131,8 +131,12 @@ const Footer = () => {
                   marginTop: '0.5rem',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem'
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 14px rgba(22, 100, 246, 0.35)',
+                  transition: 'background-color 0.3s ease, transform 0.2s ease'
                 }}
+                onMouseEnter={(e) => { if (!status.loading) e.currentTarget.style.backgroundColor = '#0d52db'; }}
+                onMouseLeave={(e) => { if (!status.loading) e.currentTarget.style.backgroundColor = '#1664f6'; }}
               >
                 {status.loading ? 'Sending...' : 'Send message'}
               </button>
@@ -196,31 +200,31 @@ const Footer = () => {
       </div>
 
       {/* Live Clocks Section */}
-      <div style={{ padding: '4rem 5%', display: 'flex', gap: '1.5rem', overflowX: 'auto', flexWrap: 'nowrap', marginTop: '2rem' }}>
+      <div className="footer-clocks-wrapper">
         {clocks.map((clock, idx) => {
           const { time, ampm } = formatTimeInfo(now, clock.tz);
           const date = formatDateInfo(now, clock.tz);
           
           return (
-            <div key={idx} style={{ flex: '1 0 250px', backgroundColor: '#f6f6f6', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div key={idx} className="clock-card">
               
-              <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '1.5rem', fontFamily: 'monospace, "Courier New", Courier' }}>
-                <span style={{ fontSize: '3rem', fontWeight: 600, letterSpacing: '2px', color: '#111' }}>
+              <div className="clock-time-row">
+                <span className="clock-time-val">
                   {time}
                 </span>
-                <span style={{ fontSize: '1rem', fontWeight: 700, marginLeft: '4px', color: '#111' }}>
+                <span className="clock-ampm-badge">
                   {ampm}
                 </span>
               </div>
               
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', fontSize: '0.7rem', color: '#666', fontWeight: 600 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <div className="clock-meta-row">
+                <div className="clock-meta-item">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  {date}
+                  <span>{date}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <div className="clock-meta-item clock-city">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  {clock.label}
+                  <span>{clock.label}</span>
                 </div>
               </div>
 
@@ -232,15 +236,20 @@ const Footer = () => {
       {/* Massive Bottom Text */}
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '2rem', padding: '0 2% 2rem 2%' }}>
         <h1 style={{ 
-          fontSize: '13vw', // Adjusted to fit perfectly on one line
+          fontSize: '13vw', 
           fontWeight: 900, 
-          color: '#111', 
           margin: 0, 
           lineHeight: 1, 
           letterSpacing: '-0.02em',
-          whiteSpace: 'nowrap' // Prevents it from breaking into two lines
+          whiteSpace: 'nowrap'
         }}>
-          BLAZIN CODE
+          <span style={{ color: '#111' }}>BLAZIN </span>
+          <span style={{ 
+            background: 'linear-gradient(135deg, #38bdf8 0%, #1664f6 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            display: 'inline-block'
+          }}>CODE</span>
         </h1>
       </div>
 

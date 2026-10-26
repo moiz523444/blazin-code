@@ -17,6 +17,91 @@
   gap: 4rem;
 }
 
+/* Clocks Section */
+.footer-clocks-wrapper {
+  padding: 4rem 5%;
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  margin-top: 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide default scrollbar */
+}
+
+.footer-clocks-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.clock-card {
+  flex: 1 0 250px;
+  background-color: #f7f7f8;
+  border: 1px solid #ededef;
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clock-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(22, 100, 246, 0.3);
+  box-shadow: 0 10px 25px rgba(22, 100, 246, 0.08);
+}
+
+.clock-time-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+}
+
+.clock-time-val {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+.clock-ampm-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 6px;
+  color: #1664f6;
+  background-color: rgba(22, 100, 246, 0.08);
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+}
+
+.clock-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  font-size: 0.72rem;
+  color: #666;
+  font-weight: 600;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.clock-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.clock-meta-item.clock-city span {
+  color: #111;
+  font-weight: 700;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .footer-contact-row {
     flex-direction: column !important;
@@ -31,4 +116,41 @@
     gap: 2rem !important;
     flex-wrap: wrap !important;
   }
+
+  .footer-clocks-wrapper {
+    padding: 1.5rem 5% !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 5%;
+  }
+
+  .clock-card {
+    flex: 0 0 85% !important;
+    scroll-snap-align: center;
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+
+  .clock-time-val {
+    font-size: 2.5rem !important;
+  }
+
+  .clock-meta-row {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    font-size: 0.7rem !important;
+  }
 }
+
+@media (max-width: 480px) {
+  .clock-card {
+    flex: 0 0 90% !important;
+  }
+
+  .clock-time-val {
+    font-size: 2.2rem !important;
+  }
+}
+

@@ -20,9 +20,37 @@ const DesignPartner = () => {
         </p>
         <button 
           onClick={() => window.location.href = 'tel:+14153048837'}
-          style={{ backgroundColor: '#1a1a1a', color: '#fff', padding: '0.8rem 2rem', borderRadius: '8px', fontSize: '0.9rem', fontWeight: 600, border: '1px solid #333', cursor: 'pointer' }}
+          className="btn-magnetic"
+          style={{ 
+            background: 'linear-gradient(135deg, rgba(22, 100, 246, 0.15) 0%, rgba(56, 189, 248, 0.08) 100%)', 
+            color: '#fff', 
+            padding: '0.85rem 2.2rem', 
+            borderRadius: '50px', 
+            fontSize: '0.92rem', 
+            fontWeight: 600, 
+            border: '1px solid rgba(56, 189, 248, 0.35)', 
+            cursor: 'pointer',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(135deg, #1664f6 0%, #0b4bcc 100%)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+            e.currentTarget.style.boxShadow = '0 12px 30px rgba(22, 100, 246, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.4)';
+            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'linear-gradient(135deg, rgba(22, 100, 246, 0.15) 0%, rgba(56, 189, 248, 0.08) 100%)';
+            e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.35)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15)';
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          }}
         >
-          Book a Call
+          <span>Book a Call</span>
+          <span style={{ fontSize: '0.95rem' }}>↗</span>
         </button>
       </div>
 
@@ -127,8 +155,8 @@ const DesignPartner = () => {
               animate={{ opacity: [0, 1, 1, 0], y: [10, 0, 0, -10] }}
               transition={{ repeat: Infinity, duration: 6, delay: 2, times: [0, 0.1, 0.9, 1] }}
             >
-              <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ff3300' }}></div>
-              <div style={{ backgroundColor: '#444', padding: '0.75rem 1rem', borderRadius: '16px', borderTopRightRadius: '4px', maxWidth: '80%' }}>
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#1664f6', boxShadow: '0 0 10px rgba(22, 100, 246, 0.5)' }}></div>
+              <div style={{ backgroundColor: '#1e293b', border: '1px solid rgba(22, 100, 246, 0.3)', padding: '0.75rem 1rem', borderRadius: '16px', borderTopRightRadius: '4px', maxWidth: '80%' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem', textAlign: 'right' }}>Hi Alex!</span>
                 <span style={{ fontSize: '0.85rem', color: '#eee', lineHeight: 1.4 }}>We've shipped Fireball Finance and Mojek Money. What are your peak transaction volume requirements?</span>
               </div>
@@ -164,9 +192,9 @@ const DesignPartner = () => {
                      position: 'absolute',
                      inset: 0,
                      borderRadius: '50%',
-                     border: '18px solid #c20000', // Deep intense red
+                     border: '18px solid #1664f6', // Brand Blue matching flame logo
                      transform: `translateY(${y}px) rotateX(90deg) scale(${scale})`,
-                     boxShadow: 'inset 0 0 15px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.5)',
+                     boxShadow: 'inset 0 0 15px rgba(0,0,0,0.8), 0 5px 15px rgba(22, 100, 246, 0.4)',
                      background: 'transparent'
                    }}></div>
                  )

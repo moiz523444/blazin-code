@@ -127,16 +127,67 @@ const Services = () => {
 
       {/* Top Toggles */}
       <div style={{ padding: '0 5%', marginBottom: '3rem', display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button style={{ backgroundColor: '#fff', color: '#111', padding: '0.6rem 1.25rem', borderRadius: '8px', fontWeight: 600, fontSize: '0.85rem', border: 'none' }}>
-            Services <span style={{ color: '#666', fontSize: '0.75rem', marginLeft: '0.25rem' }}>({services.length})</span>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <button style={{ 
+            backgroundColor: '#ffffff', 
+            color: '#0f1011', 
+            padding: '0.65rem 1.4rem', 
+            borderRadius: '50px', 
+            fontWeight: 700, 
+            fontSize: '0.85rem', 
+            border: 'none',
+            boxShadow: '0 4px 15px rgba(255,255,255,0.15)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem'
+          }}>
+            <span>Services</span> 
+            <span style={{ color: '#1664f6', fontSize: '0.75rem', fontWeight: 800 }}>({services.length})</span>
           </button>
+          
           <button 
             onClick={() => setActiveModalCategory('ALL')}
-            style={{ backgroundColor: '#181818', color: '#eee', padding: '0.6rem 1.25rem', borderRadius: '8px', fontWeight: 600, fontSize: '0.85rem', border: '1px solid #333', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+            className="btn-magnetic"
+            style={{ 
+              backgroundColor: 'rgba(255, 255, 255, 0.05)', 
+              color: '#ffffff', 
+              padding: '0.65rem 1.4rem', 
+              borderRadius: '50px', 
+              fontWeight: 600, 
+              fontSize: '0.85rem', 
+              border: '1px solid rgba(22, 100, 246, 0.35)', 
+              cursor: 'pointer', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.6rem',
+              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.3)',
+              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(22, 100, 246, 0.15)';
+              e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.7)';
+              e.currentTarget.style.boxShadow = '0 6px 25px rgba(22, 100, 246, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+              e.currentTarget.style.borderColor = 'rgba(22, 100, 246, 0.35)';
+              e.currentTarget.style.boxShadow = '0 4px 18px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
           >
             <span>All Projects Showcase</span>
-            <span style={{ backgroundColor: '#ff3300', color: '#fff', fontSize: '0.65rem', padding: '0.1rem 0.4rem', borderRadius: '10px' }}>{projectsData.length}</span>
+            <span style={{ 
+              backgroundColor: '#1664f6', 
+              color: '#fff', 
+              fontSize: '0.7rem', 
+              padding: '0.15rem 0.5rem', 
+              borderRadius: '20px',
+              fontWeight: 700,
+              boxShadow: '0 0 10px rgba(22, 100, 246, 0.5)'
+            }}>
+              {projectsData.length}
+            </span>
           </button>
         </div>
 
@@ -172,7 +223,7 @@ const Services = () => {
               {/* Left Side (Title & Tags) */}
               <div className="service-left-col">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#ff3300', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', fontWeight: 700 }}>
+                  <div style={{ width: '22px', height: '22px', borderRadius: '50%', backgroundColor: '#1664f6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.7rem', fontWeight: 700 }}>
                     {service.num}
                   </div>
                   <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#f5f5f5', letterSpacing: '-0.02em' }}>{service.title}</h3>
@@ -304,7 +355,7 @@ const Services = () => {
               transform: 'translateX(-50%)',
               width: '600px',
               height: '180px',
-              background: 'radial-gradient(circle, rgba(255, 51, 0, 0.25) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(22, 100, 246, 0.3) 0%, transparent 70%)',
               pointerEvents: 'none',
               filter: 'blur(50px)'
             }}></div>
@@ -322,8 +373,8 @@ const Services = () => {
             }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-                  <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ff3300', boxShadow: '0 0 10px #ff3300' }}></span>
-                  <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ff5522', fontWeight: 700 }}>
+                  <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#1664f6', boxShadow: '0 0 10px #1664f6' }}></span>
+                  <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#38bdf8', fontWeight: 700 }}>
                     CLIENT PORTFOLIO
                   </span>
                   <span style={{ color: '#444' }}>•</span>
@@ -353,7 +404,7 @@ const Services = () => {
                   cursor: 'pointer',
                   transition: 'background 0.2s, transform 0.2s'
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ff3300'; e.currentTarget.style.transform = 'scale(1.05)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1664f6'; e.currentTarget.style.transform = 'scale(1.05)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.transform = 'scale(1)'; }}
               >
                 ✕
@@ -374,9 +425,9 @@ const Services = () => {
               <button
                 onClick={() => setActiveModalCategory('ALL')}
                 style={{
-                  backgroundColor: activeModalCategory === 'ALL' ? '#ff3300' : 'rgba(255, 255, 255, 0.04)',
+                  backgroundColor: activeModalCategory === 'ALL' ? '#1664f6' : 'rgba(255, 255, 255, 0.04)',
                   color: activeModalCategory === 'ALL' ? '#fff' : '#aaa',
-                  border: activeModalCategory === 'ALL' ? '1px solid #ff3300' : '1px solid rgba(255, 255, 255, 0.08)',
+                  border: activeModalCategory === 'ALL' ? '1px solid #1664f6' : '1px solid rgba(255, 255, 255, 0.08)',
                   padding: '0.45rem 1rem',
                   borderRadius: '30px',
                   fontSize: '0.78rem',
@@ -392,9 +443,9 @@ const Services = () => {
                   key={idx}
                   onClick={() => setActiveModalCategory(s.categoryKey)}
                   style={{
-                    backgroundColor: activeModalCategory === s.categoryKey ? '#ff3300' : 'rgba(255, 255, 255, 0.04)',
+                    backgroundColor: activeModalCategory === s.categoryKey ? '#1664f6' : 'rgba(255, 255, 255, 0.04)',
                     color: activeModalCategory === s.categoryKey ? '#fff' : '#aaa',
-                    border: activeModalCategory === s.categoryKey ? '1px solid #ff3300' : '1px solid rgba(255, 255, 255, 0.08)',
+                    border: activeModalCategory === s.categoryKey ? '1px solid #1664f6' : '1px solid rgba(255, 255, 255, 0.08)',
                     padding: '0.45rem 1rem',
                     borderRadius: '30px',
                     fontSize: '0.78rem',
@@ -442,8 +493,8 @@ const Services = () => {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#ff3300';
-                    e.currentTarget.style.boxShadow = '0 20px 45px rgba(255, 51, 0, 0.25)';
+                    e.currentTarget.style.borderColor = '#1664f6';
+                    e.currentTarget.style.boxShadow = '0 20px 45px rgba(22, 100, 246, 0.3)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -536,7 +587,7 @@ const Services = () => {
                       gap: '0.4rem'
                     }}>
                       <span>Visit Live</span>
-                      <span style={{ color: '#ff3300' }}>↗</span>
+                      <span style={{ color: '#1664f6' }}>↗</span>
                     </div>
                   </a>
 
@@ -544,7 +595,7 @@ const Services = () => {
                   <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: '#141417', justifyContent: 'space-between' }}>
                     <div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                        <span style={{ color: '#ff5522', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        <span style={{ color: '#38bdf8', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                           {proj.niche}
                         </span>
                         <span style={{ color: '#777', fontSize: '0.75rem', fontWeight: 600 }}>
@@ -576,13 +627,14 @@ const Services = () => {
                         target="_blank" 
                         rel="noopener noreferrer"
                         style={{
-                          backgroundColor: '#ff3300',
+                          backgroundColor: '#1664f6',
                           color: '#fff',
                           padding: '0.45rem 1rem',
                           borderRadius: '20px',
                           fontSize: '0.78rem',
                           fontWeight: 700,
                           textDecoration: 'none',
+                          boxShadow: '0 4px 15px rgba(22, 100, 246, 0.3)',
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '0.35rem',

@@ -69,21 +69,22 @@ const About = () => {
       {/* Right Side (Dark block with Live Animations) */}
       <div className="about-card-right">
 
-        {/* Tiny stars background */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }}></div>
+        {/* Tiny stars background with subtle blue ambient core */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at center, #333 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.25 }}></div>
+        <div style={{ position: 'absolute', width: '350px', height: '350px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(22, 100, 246, 0.18) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }}></div>
 
         {/* Center Text inside Orbits */}
         <div style={{ position: 'absolute', zIndex: 10, textAlign: 'center' }}>
           <h3 style={{ color: '#fff', fontSize: '1.75rem', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1 }}>
             A strong team of<br />real humans
           </h3>
-          <p style={{ color: '#555', fontSize: '0.65rem', marginTop: '0.75rem', letterSpacing: '0.1em' }}>
+          <p style={{ color: 'var(--brand-cyan, #38bdf8)', fontSize: '0.65rem', marginTop: '0.75rem', letterSpacing: '0.15em', fontWeight: 600 }}>
             NOT AI AGENTS
           </p>
         </div>
 
         {/* Orbit 1 (Inner) */}
-        <div className="orbit-1" style={{ position: 'absolute', width: '300px', height: '300px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.05)' }}></div>
+        <div className="orbit-1" style={{ position: 'absolute', width: '300px', height: '300px', borderRadius: '50%', border: '1px solid rgba(22, 100, 246, 0.2)' }}></div>
         <motion.div
           className="orbit-1"
           style={{ position: 'absolute', width: '300px', height: '300px' }}
@@ -92,7 +93,7 @@ const About = () => {
         >
           {/* Avatar 1 */}
           <motion.div
-            style={{ position: 'absolute', top: '-25px', left: '125px', width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #0d0d0d' }}
+            style={{ position: 'absolute', top: '-25px', left: '125px', width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden', border: '2px solid rgba(22, 100, 246, 0.4)' }}
             animate={{ rotate: -360 }}
             transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
           >

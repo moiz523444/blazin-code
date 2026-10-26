@@ -70,7 +70,7 @@ const Testimonials = () => {
       {/* Top Header */}
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1.5rem', fontSize: '0.85rem' }}>
-          <span style={{ color: '#e50000', letterSpacing: '2px', fontSize: '1.2rem' }}>★★★★★</span>
+          <span style={{ color: '#1664f6', letterSpacing: '2px', fontSize: '1.2rem' }}>★★★★★</span>
           <span style={{ textDecoration: 'underline', color: '#555' }}>Verified by Clutch™ reviews</span>
         </div>
         <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px', margin: '0 auto' }}>
@@ -87,8 +87,8 @@ const Testimonials = () => {
             <h3 style={{ fontSize: '1.25rem', fontWeight: 500 }}>Blazin Code Reviews</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontWeight: 600 }}>5.0</span>
-              <span style={{ color: '#e50000', fontSize: '1rem', letterSpacing: '1px' }}>★★★★★</span>
-              <span style={{ color: '#0066cc', fontSize: '0.8rem', fontWeight: 500 }}>20 reviews</span>
+              <span style={{ color: '#1664f6', fontSize: '1rem', letterSpacing: '1px' }}>★★★★★</span>
+              <span style={{ color: '#1664f6', fontSize: '0.8rem', fontWeight: 600 }}>20 reviews</span>
             </div>
           </div>
           <div style={{ fontSize: '0.8rem', color: '#555', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -102,7 +102,7 @@ const Testimonials = () => {
             <div key={idx} style={{ padding: '1.5rem', border: '1px solid #eaeaea', borderRadius: '8px', display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
                 <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>5.0</span>
-                <span style={{ color: '#e50000', fontSize: '0.9rem', letterSpacing: '1px' }}>★★★★★</span>
+                <span style={{ color: '#1664f6', fontSize: '0.9rem', letterSpacing: '1px' }}>★★★★★</span>
               </div>
               <p style={{ fontSize: '0.85rem', color: '#444', lineHeight: 1.5, marginBottom: '2rem', flex: 1 }}>
                 "{rev.text}"
@@ -110,7 +110,7 @@ const Testimonials = () => {
               <div>
                 <div style={{ fontSize: '0.75rem', color: '#666', marginBottom: '0.5rem' }}>{rev.author}</div>
                 {rev.verified && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#009944', fontSize: '0.7rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#1664f6', fontSize: '0.7rem', fontWeight: 600 }}>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     Verified Review
                   </div>
