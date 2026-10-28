@@ -32,19 +32,171 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 450px;
+  max-width: 460px;
+}
+
+/* Showcase Modal Custom Scrollbars & Animations */
+.modal-backdrop-fade {
+  animation: modalBackdropIn 0.22s ease-out forwards;
+}
+
+.modal-dialog-box {
+  animation: modalScaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-tabs-bar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modal-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-projects-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  will-change: scroll-position;
+}
+
+.modal-projects-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-projects-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-projects-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+}
+
+.modal-projects-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
 }
 
 .modal-projects-grid {
-  flex: 1;
-  overflow-y: scroll;
-  padding: 2.5rem;
+  padding: 2.25rem 4% 3.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2.25rem;
   align-content: start;
-  min-height: 0;
-  -webkit-overflow-scrolling: touch;
+}
+
+/* Portfolio Card Hover Interactions - GPU Accelerated (no heavy backdrop-filter during scroll) */
+.portfolio-showcase-card {
+  position: relative;
+  background-color: #101218;
+  border-radius: 24px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transform: translateZ(0);
+  will-change: transform;
+  contain: layout paint;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.portfolio-showcase-card:hover {
+  transform: translate3d(0, -5px, 0);
+  background-color: #131824;
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.portfolio-card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #0b0b0e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transform: translateZ(0);
+}
+
+.portfolio-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.06) translateZ(0);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.portfolio-showcase-card:hover .portfolio-card-thumb img {
+  transform: scale(1.11) translateZ(0);
+}
+
+.portfolio-card-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.portfolio-showcase-card:hover .portfolio-card-arrow {
+  background: #1664f6;
+  border-color: transparent;
+  transform: rotate(45deg) scale(1.05);
+}
+
+.portfolio-domain-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(8, 10, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.01em;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.portfolio-showcase-card:hover .portfolio-domain-badge {
+  background-color: #1664f6;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
 }
 
 /* Mobile & Tablet Responsiveness */
@@ -73,14 +225,14 @@
   }
 
   .service-right-col .service-img-preview {
-    height: 200px !important;
+    height: 210px !important;
   }
 
   /* Modal responsiveness */
   .modal-dialog-box {
-    width: 100% !important;
-    height: 96vh !important;
-    border-radius: 16px !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
   }
 
   .modal-header-bar {
@@ -88,16 +240,16 @@
   }
 
   .modal-header-bar h2 {
-    font-size: 1.3rem !important;
+    font-size: 1.35rem !important;
   }
 
   .modal-tabs-bar {
-    padding: 0.75rem 1rem !important;
+    padding: 0.75rem 1.25rem !important;
   }
 
   .modal-projects-grid {
     padding: 1.25rem !important;
     grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    gap: 1.25rem !important;
   }
 }

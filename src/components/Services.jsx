@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projectsData } from '../data/projects';
@@ -9,6 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   const containerRef = useRef(null);
+  const modalScrollRef = useRef(null);
+  const modalContentRef = useRef(null);
   const [activeModalCategory, setActiveModalCategory] = useState(null);
 
   const services = [
@@ -17,7 +20,7 @@ const Services = () => {
       title: 'WEB DEVELOPMENT',
       categoryKey: 'WEB DEVELOPMENT',
       tags: ['React', 'Next.js', 'Frontend', 'Backend', 'Full Stack', 'Performance'],
-      image: '/projects/lodg.png',
+      image: '/projects/dshcp.jpeg',
       desc: 'Crafting high-performance, beautiful websites tailored to your brand. We build fast, scalable, and secure web solutions.'
     },
     {
@@ -25,15 +28,15 @@ const Services = () => {
       title: 'MOBILE APP DEVELOPMENT',
       categoryKey: 'MOBILE APP DEVELOPMENT',
       tags: ['iOS', 'Android', 'React Native', 'Flutter', 'Cross-Platform'],
-      image: '/projects/mojek.png',
-      desc: 'Building native and cross-platform apps for iOS and Android. Engaging mobile experiences that keep users coming back.'
+      image: '/projects/dufaa.jpeg',
+      desc: 'Building native and cross-platform FinTech & consumer apps for iOS and Android, including bilingual mobile financing and banking platforms.'
     },
     {
       num: '3',
       title: 'CUSTOM WEB APPLICATIONS',
       categoryKey: 'CUSTOM WEB APPLICATIONS',
       tags: ['Enterprise', 'Dashboard', 'Portal', 'API Integration', 'Cloud'],
-      image: '/projects/fireball.png',
+      image: '/projects/firmlogistix.jpeg',
       desc: 'Scalable and secure web apps engineered for complex business needs. Automate workflows and scale your operations.'
     },
     {
@@ -41,7 +44,7 @@ const Services = () => {
       title: 'SEO & GROWTH',
       categoryKey: 'SEO & GROWTH',
       tags: ['Technical SEO', 'Content Strategy', 'Analytics', 'Conversion Rate'],
-      image: '/projects/core1.png',
+      image: '/projects/core1.jpeg',
       desc: 'Data-driven strategies to dominate search results and scale traffic. Turn visitors into loyal customers.'
     },
     {
@@ -49,7 +52,7 @@ const Services = () => {
       title: 'ECOMMERCE SOLUTIONS',
       categoryKey: 'ECOMMERCE SOLUTIONS',
       tags: ['Shopify', 'WooCommerce', 'Custom Store', 'Payments', 'Cart'],
-      image: '/projects/bathingculture.png',
+      image: '/projects/bathingculture.jpeg',
       desc: 'High-converting online stores built on Shopify and custom architectures. Optimized for sales and seamless checkout.'
     },
     {
@@ -57,7 +60,7 @@ const Services = () => {
       title: 'BRAND & DIGITAL TECH',
       categoryKey: 'BRAND & DIGITAL TECH',
       tags: ['Global Localization', 'Design Systems', 'Dynamic Catalog', 'Conversion'],
-      image: '/projects/elica.png',
+      image: '/projects/elica.jpeg',
       desc: 'Award-winning enterprise web experiences built with modern architecture and immersive presentation.'
     },
     {
@@ -65,7 +68,7 @@ const Services = () => {
       title: 'UI/UX DESIGN & ARCHITECTURE',
       categoryKey: 'UI/UX DESIGN',
       tags: ['User Research', 'Wireframes', 'Prototyping', 'Design Systems'],
-      image: '/projects/modify.png',
+      image: '/projects/modify.jpeg',
       desc: 'Intuitive, award-winning interfaces designed for conversion. We make complex systems feel clean and luxurious.'
     },
     {
@@ -73,7 +76,7 @@ const Services = () => {
       title: 'SAAS ENGINEERING',
       categoryKey: 'SAAS ENGINEERING',
       tags: ['Architecture', 'Multi-tenant', 'Microservices', 'Scalability'],
-      image: '/projects/plasfy.png',
+      image: '/projects/vinsdaddy.jpeg',
       desc: 'End-to-end development of scalable Software as a Service products. Built robustly for rapid user growth.'
     }
   ];
@@ -108,18 +111,56 @@ const Services = () => {
 
   // Filter projects for the modal (or show all if general)
   const filteredProjects = activeModalCategory && activeModalCategory !== 'ALL'
-    ? projectsData.filter(p => p.category === activeModalCategory || p.niche.toLowerCase().includes(activeModalCategory.toLowerCase().slice(0, 4)))
+    ? projectsData.filter(p => p.category === activeModalCategory || (p.categories && p.categories.includes(activeModalCategory)))
     : projectsData;
 
   const displayProjects = filteredProjects.length > 0 ? filteredProjects : projectsData;
 
-  // Manage body scroll lock cleanly when modal is opened
+  // Dedicated smooth Lenis scroll inside modal + pause background Lenis
   useEffect(() => {
-    if (activeModalCategory) {
-      document.body.style.overflow = 'hidden';
-    } else {
+    if (!activeModalCategory) {
       document.body.style.overflow = '';
+      window.lenis?.start();
+      return;
     }
+
+    document.body.style.overflow = 'hidden';
+    window.lenis?.stop();
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveModalCategory(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    let modalLenis = null;
+    let rafId = null;
+
+    if (modalScrollRef.current && modalContentRef.current) {
+      modalScrollRef.current.scrollTop = 0;
+      modalLenis = new Lenis({
+        wrapper: modalScrollRef.current,
+        content: modalContentRef.current,
+        duration: 1.05,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.5,
+      });
+
+      const raf = (time) => {
+        modalLenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+      rafId = requestAnimationFrame(raf);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      if (rafId) cancelAnimationFrame(rafId);
+      if (modalLenis) modalLenis.destroy();
+      document.body.style.overflow = '';
+      window.lenis?.start();
+    };
   }, [activeModalCategory]);
 
   return (
@@ -263,29 +304,33 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Right Side (Image & Desc) */}
+              {/* Right Side (Clean Studio Mockup Frame & Desc) */}
               <div className="service-right-col">
-                <div className="service-img-preview" style={{ 
-                  width: '100%', 
-                  height: '240px', 
-                  borderRadius: '16px', 
-                  overflow: 'hidden', 
-                  border: '1px solid rgba(255, 255, 255, 0.1)', 
-                  backgroundColor: '#121214',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}>
-                  {/* Studio Window Chrome */}
-                  <div style={{ height: '28px', backgroundColor: '#1a1a1e', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', padding: '0 12px', gap: '6px', flexShrink: 0 }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ff5f56' }}></div>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ffbd2e' }}></div>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#27c93f' }}></div>
-                    <span style={{ marginLeft: 'auto', fontSize: '0.65rem', color: '#666', fontFamily: 'monospace' }}>live deployment</span>
-                  </div>
-
-                  {/* Screenshot Viewport */}
-                  <div style={{ flex: 1, width: '100%', overflow: 'hidden', position: 'relative' }}>
+                <div 
+                  onClick={() => setActiveModalCategory(service.categoryKey)}
+                  className="service-img-preview" 
+                  style={{ 
+                    width: '100%', 
+                    height: '245px', 
+                    borderRadius: '20px', 
+                    padding: '6px',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)', 
+                    boxShadow: '0 24px 48px -12px rgba(0,0,0,0.75)',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    transition: 'border-color 0.3s ease, box-shadow 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.45)';
+                    e.currentTarget.style.boxShadow = '0 24px 48px -12px rgba(22, 100, 246, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 24px 48px -12px rgba(0,0,0,0.75)';
+                  }}
+                >
+                  <div style={{ width: '100%', height: '100%', borderRadius: '14px', overflow: 'hidden', position: 'relative', backgroundColor: '#0b0b0e' }}>
                     <img 
                       src={service.image} 
                       alt={service.title} 
@@ -293,12 +338,32 @@ const Services = () => {
                         width: '100%', 
                         height: '100%', 
                         objectFit: 'cover', 
-                        objectPosition: 'top center',
-                        transition: 'transform 0.5s ease'
+                        objectPosition: 'center center',
+                        transform: 'scale(1.06)',
+                        transition: 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)'
                       }} 
-                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.04)'}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.11)'}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
                     />
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '10px',
+                      right: '10px',
+                      backgroundColor: 'rgba(8, 10, 15, 0.88)',
+                      border: '1px solid rgba(255,255,255,0.14)',
+                      padding: '0.28rem 0.7rem',
+                      borderRadius: '30px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem',
+                      fontSize: '0.68rem',
+                      fontWeight: 600,
+                      color: '#fff',
+                      pointerEvents: 'none'
+                    }}>
+                      <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#4ade80' }}></span>
+                      <span>View Case Studies ↗</span>
+                    </div>
                   </div>
                 </div>
                 <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: 1.5 }}>
@@ -312,21 +377,20 @@ const Services = () => {
         ))}
       </div>
 
-      {/* Ultra-Premium Showcase Modal rendered directly to body */}
+      {/* Ultra-Premium Full-Screen Studio Showcase Modal */}
       {activeModalCategory && typeof document !== 'undefined' && createPortal(
         <div 
+          className="modal-backdrop-fade"
           onClick={() => setActiveModalCategory(null)}
           style={{
             position: 'fixed',
             inset: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.92)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
+            backgroundColor: '#07080c',
             zIndex: 99999,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '2rem 1.5rem',
+            padding: 0,
             cursor: 'default'
           }}
         >
@@ -334,351 +398,355 @@ const Services = () => {
             className="modal-dialog-box"
             onClick={(e) => e.stopPropagation()}
             style={{
-              width: '100%',
-              maxWidth: '1280px',
-              height: '92vh',
-              backgroundColor: '#0c0c0e',
-              borderRadius: '28px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              width: '100vw',
+              maxWidth: 'none',
+              height: '100vh',
+              backgroundColor: '#07080c',
+              borderRadius: 0,
+              border: 'none',
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: '0 40px 120px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.05)',
               overflow: 'hidden',
               position: 'relative'
             }}
           >
-            {/* Ambient Spotlight */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '600px',
-              height: '180px',
-              background: 'radial-gradient(circle, rgba(22, 100, 246, 0.3) 0%, transparent 70%)',
-              pointerEvents: 'none',
-              filter: 'blur(50px)'
-            }}></div>
-
-            {/* Header */}
+            {/* Top Header */}
             <div className="modal-header-bar" style={{
-              padding: '2rem 2.5rem 1.25rem',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+              padding: '2rem 4% 1.25rem',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               position: 'relative',
               zIndex: 10,
-              backgroundColor: '#0c0c0e'
+              backgroundColor: '#07080c'
             }}>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-                  <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#1664f6', boxShadow: '0 0 10px #1664f6' }}></span>
-                  <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#38bdf8', fontWeight: 700 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.45rem' }}>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    backgroundColor: 'rgba(22, 100, 246, 0.14)',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    padding: '0.2rem 0.65rem',
+                    borderRadius: '30px',
+                    fontSize: '0.68rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: '#38bdf8',
+                    fontWeight: 700
+                  }}>
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#38bdf8' }} />
                     CLIENT PORTFOLIO
                   </span>
-                  <span style={{ color: '#444' }}>•</span>
-                  <span style={{ fontSize: '0.75rem', color: '#888' }}>
-                    10 Production Deployments
+                  <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>
+                    {projectsData.length} Verified Production Systems
                   </span>
                 </div>
-                <h2 style={{ fontSize: '1.85rem', fontWeight: 700, color: '#fff', margin: 0, letterSpacing: '-0.03em' }}>
-                  Live Engineering Deployments
+                <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#fff', margin: 0, letterSpacing: '-0.03em' }}>
+                  Selected Works & Deployments
                 </h2>
               </div>
 
               {/* Close Button */}
               <button 
                 onClick={() => setActiveModalCategory(null)}
+                aria-label="Close Showcase"
                 style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
                   color: '#fff',
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '50%',
-                  fontSize: '1.1rem',
+                  height: '42px',
+                  padding: '0 1rem',
+                  borderRadius: '50px',
+                  fontSize: '0.82rem',
+                  fontWeight: 600,
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  gap: '0.5rem',
                   cursor: 'pointer',
-                  transition: 'background 0.2s, transform 0.2s'
+                  transition: 'background-color 0.2s ease, border-color 0.2s ease'
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1664f6'; e.currentTarget.style.transform = 'scale(1.05)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.transform = 'scale(1)'; }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                }}
               >
-                ✕
+                <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.72rem', letterSpacing: '0.04em' }}>ESC</span>
+                <span style={{ fontSize: '1rem', lineHeight: 1 }}>✕</span>
               </button>
             </div>
 
-            {/* Category Filter Tabs */}
+            {/* Sleek Scrollbar-Free Category Filter Bar */}
             <div className="modal-tabs-bar" style={{
-              padding: '0.85rem 2.5rem',
+              padding: '0 4% 1.15rem',
               display: 'flex',
               gap: '0.5rem',
               overflowX: 'auto',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
-              backgroundColor: '#111114',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.07)',
               position: 'relative',
-              zIndex: 10
+              zIndex: 10,
+              backgroundColor: '#07080c'
             }}>
               <button
                 onClick={() => setActiveModalCategory('ALL')}
                 style={{
-                  backgroundColor: activeModalCategory === 'ALL' ? '#1664f6' : 'rgba(255, 255, 255, 0.04)',
-                  color: activeModalCategory === 'ALL' ? '#fff' : '#aaa',
-                  border: activeModalCategory === 'ALL' ? '1px solid #1664f6' : '1px solid rgba(255, 255, 255, 0.08)',
-                  padding: '0.45rem 1rem',
-                  borderRadius: '30px',
+                  background: activeModalCategory === 'ALL'
+                    ? 'linear-gradient(135deg, #1664f6 0%, #0d4bcc 100%)'
+                    : 'rgba(255, 255, 255, 0.035)',
+                  color: activeModalCategory === 'ALL' ? '#fff' : 'rgba(255, 255, 255, 0.65)',
+                  border: activeModalCategory === 'ALL'
+                    ? '1px solid rgba(56, 189, 248, 0.5)'
+                    : '1px solid rgba(255, 255, 255, 0.08)',
+                  padding: '0.5rem 1.1rem',
+                  borderRadius: '50px',
                   fontSize: '0.78rem',
                   fontWeight: 600,
                   cursor: 'pointer',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  transition: 'all 0.2s ease'
                 }}
               >
-                All Projects ({projectsData.length})
+                <span>All Works</span>
+                <span style={{
+                  backgroundColor: activeModalCategory === 'ALL' ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)',
+                  color: '#fff',
+                  padding: '0.08rem 0.45rem',
+                  borderRadius: '20px',
+                  fontSize: '0.68rem',
+                  fontWeight: 700
+                }}>
+                  {projectsData.length}
+                </span>
               </button>
-              {services.map((s, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveModalCategory(s.categoryKey)}
-                  style={{
-                    backgroundColor: activeModalCategory === s.categoryKey ? '#1664f6' : 'rgba(255, 255, 255, 0.04)',
-                    color: activeModalCategory === s.categoryKey ? '#fff' : '#aaa',
-                    border: activeModalCategory === s.categoryKey ? '1px solid #1664f6' : '1px solid rgba(255, 255, 255, 0.08)',
-                    padding: '0.45rem 1rem',
-                    borderRadius: '30px',
-                    fontSize: '0.78rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  {s.title}
-                </button>
-              ))}
-            </div>
 
-            {/* Scrollable Projects Grid */}
-            <div 
-              className="modal-projects-grid"
-              data-lenis-prevent="true"
-              onWheel={(e) => e.stopPropagation()}
-              style={{
-                flex: 1,
-                overflowY: 'scroll',
-                padding: '2.5rem',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-                gap: '2.5rem',
-                alignContent: 'start',
-                minHeight: 0,
-                WebkitOverflowScrolling: 'touch'
-              }}
-            >
-              {displayProjects.map((proj) => (
-                <div
-                  key={proj.id}
-                  style={{
-                    backgroundColor: '#141417',
-                    borderRadius: '22px',
-                    overflow: 'hidden',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.45)',
-                    transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-                    minHeight: '440px',
-                    flexShrink: 0
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#1664f6';
-                    e.currentTarget.style.boxShadow = '0 20px 45px rgba(22, 100, 246, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.45)';
-                  }}
-                >
-                  {/* Browser Header Bar */}
-                  <div style={{
-                    padding: '0.75rem 1.25rem',
-                    backgroundColor: '#1c1c22',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexShrink: 0
-                  }}>
-                    <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ff5f56' }}></span>
-                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ffbd2e' }}></span>
-                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#27c93f' }}></span>
-                    </div>
-
-                    <div style={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                      padding: '0.25rem 0.9rem',
-                      borderRadius: '20px',
-                      fontSize: '0.7rem',
-                      fontFamily: 'monospace',
-                      color: '#bbb',
-                      maxWidth: '190px',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                      border: '1px solid rgba(255, 255, 255, 0.06)'
-                    }}>
-                      {proj.url.replace('https://', '').replace(/\/$/, '')}
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                      <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#4ade80', boxShadow: '0 0 6px #4ade80' }}></span>
-                      <span style={{ fontSize: '0.65rem', color: '#4ade80', fontWeight: 700 }}>LIVE</span>
-                    </div>
-                  </div>
-
-                  {/* Browser Mockup Screen Image */}
-                  <a 
-                    href={proj.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+              {services.map((s, idx) => {
+                const isActive = activeModalCategory === s.categoryKey;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveModalCategory(s.categoryKey)}
                     style={{
-                      width: '100%',
-                      height: '240px',
-                      minHeight: '240px',
-                      maxHeight: '240px',
-                      position: 'relative',
-                      backgroundColor: '#0a0a0c',
-                      overflow: 'hidden',
-                      display: 'block',
-                      flexShrink: 0
+                      background: isActive
+                        ? 'linear-gradient(135deg, #1664f6 0%, #0d4bcc 100%)'
+                        : 'rgba(255, 255, 255, 0.035)',
+                      color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.65)',
+                      border: isActive
+                        ? '1px solid rgba(56, 189, 248, 0.5)'
+                        : '1px solid rgba(255, 255, 255, 0.08)',
+                      padding: '0.5rem 1.05rem',
+                      borderRadius: '50px',
+                      fontSize: '0.76rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    <img 
-                      src={proj.image} 
-                      alt={proj.title}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        objectPosition: 'top center',
-                        display: 'block'
-                      }}
-                    />
-
-                    {/* Hover Visit Pill */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '12px',
-                      right: '12px',
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255, 255, 255, 0.25)',
-                      padding: '0.35rem 0.8rem',
-                      borderRadius: '20px',
-                      color: '#fff',
-                      fontSize: '0.72rem',
-                      fontWeight: 600,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem'
-                    }}>
-                      <span>Visit Live</span>
-                      <span style={{ color: '#1664f6' }}>↗</span>
-                    </div>
-                  </a>
-
-                  {/* Card Content & Details */}
-                  <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, backgroundColor: '#141417', justifyContent: 'space-between' }}>
-                    <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                        <span style={{ color: '#38bdf8', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                          {proj.niche}
-                        </span>
-                        <span style={{ color: '#777', fontSize: '0.75rem', fontWeight: 600 }}>
-                          {proj.year}
-                        </span>
-                      </div>
-
-                      <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#fff', margin: '0 0 0.5rem 0', letterSpacing: '-0.02em' }}>
-                        {proj.title}
-                      </h3>
-
-                      <p style={{ color: '#999', fontSize: '0.85rem', lineHeight: 1.5, margin: '0 0 1.25rem 0' }}>
-                        {proj.desc}
-                      </p>
-                    </div>
-
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      paddingTop: '1rem',
-                      borderTop: '1px solid rgba(255, 255, 255, 0.08)'
-                    }}>
-                      <span style={{ fontSize: '0.75rem', color: '#888', fontWeight: 500 }}>
-                        {proj.category}
-                      </span>
-                      <a 
-                        href={proj.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{
-                          backgroundColor: '#1664f6',
-                          color: '#fff',
-                          padding: '0.45rem 1rem',
-                          borderRadius: '20px',
-                          fontSize: '0.78rem',
-                          fontWeight: 700,
-                          textDecoration: 'none',
-                          boxShadow: '0 4px 15px rgba(22, 100, 246, 0.3)',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '0.35rem',
-                          transition: 'opacity 0.2s'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-                        onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-                      >
-                        Launch ↗
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                    {s.title}
+                  </button>
+                );
+              })}
             </div>
 
+            {/* Lenis-Powered Smooth Scroll Container */}
+            <div 
+              ref={modalScrollRef}
+              className="modal-projects-scroll"
+              data-lenis-prevent="true"
+            >
+              <div ref={modalContentRef} className="modal-projects-grid">
+                {displayProjects.map((proj, index) => {
+                  const cleanDomain = proj.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+                  return (
+                    <a
+                      key={proj.id}
+                      href={proj.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="portfolio-showcase-card"
+                    >
+                      {/* Studio Mockup Image Frame */}
+                      <div className="portfolio-card-thumb">
+                        <img 
+                          src={proj.image} 
+                          alt={proj.title}
+                          decoding="async"
+                        />
 
-            {/* Modal Bottom Bar */}
+                        {/* Subtle Top-Right Index Pill */}
+                        <div style={{
+                          position: 'absolute',
+                          top: '12px',
+                          right: '12px',
+                          backgroundColor: 'rgba(8, 10, 15, 0.88)',
+                          border: '1px solid rgba(255, 255, 255, 0.12)',
+                          padding: '0.22rem 0.6rem',
+                          borderRadius: '20px',
+                          color: 'rgba(255, 255, 255, 0.85)',
+                          fontSize: '0.68rem',
+                          fontWeight: 700,
+                          fontFamily: 'monospace'
+                        }}>
+                          #{String(index + 1).padStart(2, '0')}
+                        </div>
+
+                        {/* Bottom-Left Live Domain Pill */}
+                        <div className="portfolio-domain-badge">
+                          <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#4ade80' }} />
+                          <span>{cleanDomain}</span>
+                          <span style={{ fontSize: '0.75rem', opacity: 0.85 }}>↗</span>
+                        </div>
+                      </div>
+
+                      {/* Editorial Card Content */}
+                      <div style={{
+                        padding: '1.15rem 0.85rem 0.85rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        flex: 1,
+                        justifyContent: 'space-between',
+                        gap: '0.85rem'
+                      }}>
+                        <div>
+                          {/* Meta Row */}
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+                            <span style={{
+                              color: '#38bdf8',
+                              fontSize: '0.7rem',
+                              fontWeight: 700,
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.06em'
+                            }}>
+                              {proj.niche}
+                            </span>
+                            <span style={{
+                              color: 'rgba(255, 255, 255, 0.4)',
+                              fontSize: '0.72rem',
+                              fontWeight: 600,
+                              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                              padding: '0.12rem 0.5rem',
+                              borderRadius: '20px',
+                              border: '1px solid rgba(255, 255, 255, 0.06)'
+                            }}>
+                              {proj.year}
+                            </span>
+                          </div>
+
+                          {/* Title + Circular Arrow Button */}
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem', marginBottom: '0.45rem' }}>
+                            <h3 style={{
+                              fontSize: '1.35rem',
+                              fontWeight: 700,
+                              color: '#ffffff',
+                              margin: 0,
+                              letterSpacing: '-0.025em'
+                            }}>
+                              {proj.title}
+                            </h3>
+                            <div className="portfolio-card-arrow">
+                              ↗
+                            </div>
+                          </div>
+
+                          {/* Concise Description */}
+                          <p style={{
+                            color: 'rgba(255, 255, 255, 0.55)',
+                            fontSize: '0.84rem',
+                            lineHeight: 1.55,
+                            margin: 0
+                          }}>
+                            {proj.desc}
+                          </p>
+                        </div>
+
+                        {/* Subtle Footer Tag */}
+                        <div style={{
+                          paddingTop: '0.75rem',
+                          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center'
+                        }}>
+                          <span style={{
+                            fontSize: '0.68rem',
+                            color: 'rgba(255, 255, 255, 0.4)',
+                            fontWeight: 600,
+                            letterSpacing: '0.05em',
+                            textTransform: 'uppercase'
+                          }}>
+                            {proj.category}
+                          </span>
+                          <span style={{
+                            fontSize: '0.76rem',
+                            color: '#38bdf8',
+                            fontWeight: 600
+                          }}>
+                            Explore Live →
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Modal Footer Bar */}
             <div style={{
-              padding: '1.1rem 2.5rem',
-              backgroundColor: '#0a0a0c',
-              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              padding: '1rem 4%',
+              backgroundColor: '#07080c',
+              borderTop: '1px solid rgba(255, 255, 255, 0.07)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              fontSize: '0.82rem',
-              color: '#777'
+              fontSize: '0.8rem',
+              color: 'rgba(255, 255, 255, 0.5)',
+              position: 'relative',
+              zIndex: 10
             }}>
-              <span>Showing {displayProjects.length} enterprise deployments</span>
-              <button 
-                onClick={() => setActiveModalCategory(activeModalCategory === 'ALL' ? null : 'ALL')}
-                style={{
-                  backgroundColor: 'transparent',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  color: '#fff',
-                  padding: '0.35rem 0.9rem',
-                  borderRadius: '20px',
-                  fontSize: '0.78rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                {activeModalCategory === 'ALL' ? 'Close Showcase' : 'View All 10 Projects'}
-              </button>
+              <span>Showing <strong style={{ color: '#fff' }}>{displayProjects.length}</strong> production case studies</span>
+              <div style={{ display: 'flex', gap: '0.6rem' }}>
+                {activeModalCategory !== 'ALL' && (
+                  <button 
+                    onClick={() => setActiveModalCategory('ALL')}
+                    style={{
+                      backgroundColor: 'rgba(22, 100, 246, 0.15)',
+                      border: '1px solid rgba(56, 189, 248, 0.35)',
+                      color: '#38bdf8',
+                      padding: '0.4rem 1rem',
+                      borderRadius: '50px',
+                      fontSize: '0.76rem',
+                      fontWeight: 600,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Show All ({projectsData.length})
+                  </button>
+                )}
+                <button 
+                  onClick={() => setActiveModalCategory(null)}
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    color: '#fff',
+                    padding: '0.4rem 1.1rem',
+                    borderRadius: '50px',
+                    fontSize: '0.76rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                >
+                  Close Showcase
+                </button>
+              </div>
             </div>
           </div>
         </div>,

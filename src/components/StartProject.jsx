@@ -1,7 +1,43 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import danceVideoUrl from '../assets/dance-character.mp4';
 
 const StartProject = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+
+    const tryPlay = () => {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    };
+
+    tryPlay();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tryPlay();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="start-project" style={{ position: 'relative', width: '100%', height: '100vh', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -9,19 +45,23 @@ const StartProject = () => {
        {/* Premium 3D Character Video Background */}
        <div style={{ position: 'absolute', inset: 0, zIndex: 1, backgroundColor: '#000', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
             style={{ 
               width: '100%', 
               height: '100%', 
               objectFit: 'contain', 
               opacity: 0.9,
-              transform: 'scale(0.8)' // slightly scale down so it's not overwhelmingly large
+              transform: 'scale(0.8)'
             }}
-            src="/dance-character.mp4"
-          />
+          >
+            <source src={danceVideoUrl} type="video/mp4" />
+            <source src="/dance-character.mp4" type="video/mp4" />
+          </video>
        </div>
 
        {/* Dark Overlay Gradient to blend edges of the video into the section */}

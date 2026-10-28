@@ -144,7 +144,7 @@ const DesignPartner = () => {
               <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#444' }}></div>
               <div style={{ backgroundColor: '#2a2a2a', padding: '0.75rem 1rem', borderRadius: '16px', borderTopLeftRadius: '4px', maxWidth: '80%' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem' }}>Hey Blazin Code team!</span>
-                <span style={{ fontSize: '0.85rem', color: '#ccc', lineHeight: 1.4 }}>We need a high-frequency DeFi dashboard and banking web app. Extremely low latency.</span>
+                <span style={{ fontSize: '0.85rem', color: '#ccc', lineHeight: 1.4 }}>We need a high-performance FinTech financing app and a global logistics portal with instant quote calculators.</span>
               </div>
             </motion.div>
 
@@ -158,7 +158,7 @@ const DesignPartner = () => {
               <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#1664f6', boxShadow: '0 0 10px rgba(22, 100, 246, 0.5)' }}></div>
               <div style={{ backgroundColor: '#1e293b', border: '1px solid rgba(22, 100, 246, 0.3)', padding: '0.75rem 1rem', borderRadius: '16px', borderTopRightRadius: '4px', maxWidth: '80%' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', display: 'block', marginBottom: '0.2rem', textAlign: 'right' }}>Hi Alex!</span>
-                <span style={{ fontSize: '0.85rem', color: '#eee', lineHeight: 1.4 }}>We've shipped Fireball Finance and Mojek Money. What are your peak transaction volume requirements?</span>
+                <span style={{ fontSize: '0.85rem', color: '#eee', lineHeight: 1.4 }}>We've shipped Dufaa, Mojek Money, and Firm Logistix. Let's align on your architecture and transaction scale!</span>
               </div>
             </motion.div>
 

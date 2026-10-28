@@ -168,11 +168,11 @@ const Footer = () => {
             <div>
               <div style={{ fontSize: '0.85rem', color: '#888', marginBottom: '1.5rem', fontWeight: 500 }}>Industries</div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>FinTech & DeFi</a></li>
-                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Cloud & SaaS Platforms</a></li>
-                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Luxury E-Commerce</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>FinTech & Mobile Banking</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>AutoTech & Cloud SaaS</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Freight & Supply Chain</a></li>
                 <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>CleanTech & Energy</a></li>
-                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>PropTech & Architecture</a></li>
+                <li><a href="#works" onClick={(e) => { e.preventDefault(); document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ color: '#111', textDecoration: 'none', fontWeight: 600, fontSize: '0.95rem' }}>Healthcare & EdTech</a></li>
               </ul>
             </div>
             {/* Contact Us Column */}

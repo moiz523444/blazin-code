@@ -22,7 +22,7 @@ const Testimonials = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: num,
-          start: "top 85%", // Starts animating when number comes into view
+          start: "top 85%",
         },
         onUpdate: () => {
           num.innerText = Math.floor(proxy.val) + suffix;
@@ -33,32 +33,32 @@ const Testimonials = () => {
 
   const reviews = [
     {
-      text: "Blazin Code engineered our decentralized financial analytics platform with remarkable speed and rock-solid architecture. A top-tier dev team.",
-      author: "Founding Member, Fireball Finance",
+      text: "Blazin Code engineered our bilingual personal financing platform and mobile app experience with remarkable speed and rock-solid architecture.",
+      author: "Head of Digital Product, Dufaa",
       verified: true
     },
     {
-      text: "The custom eCommerce experience built by Blazin Code skyrocketed our conversion rate and made our organic brand truly stand out.",
-      author: "VP of Digital, Bathing Culture",
+      text: "Building a data-driven vehicle history and inspection SaaS requires complex data pipelines. Blazin Code delivered lightning-fast search and reliable cloud scale.",
+      author: "Founder & CEO, Vindaddy",
       verified: true
     },
     {
-      text: "Building an in-browser graphics SaaS is extraordinarily complex. Blazin Code delivered lightning-fast canvas rendering and reliable cloud scale.",
-      author: "Product Lead, Plasfy",
+      text: "Our global NVOCC freight portal and real-time cargo estimator across 15+ countries works seamlessly. Highly recommend their engineering prowess.",
+      author: "Operations Director, Firm Logistix",
       verified: true
     },
     {
-      text: "Our property booking UX is seamless, responsive, and loved by our guests across New Zealand. Highly recommend their engineering prowess.",
-      author: "Managing Director, Lodg",
+      text: "They transformed our nursing and healthcare admissions workflow into a modern, accessible academic portal loved by both students and faculty.",
+      author: "Admissions Director, Divine School (DSHCP)",
       verified: true
     },
     {
-      text: "Their attention to architectural detail, clean code, and modern aesthetic transformed our digital presence into an award-worthy showcase.",
-      author: "Principal Architect, Modify",
+      text: "The custom eCommerce experience and 3D commission storefront built by Blazin Code skyrocketed our conversion rate and elevated our brand.",
+      author: "Creative Lead, FurFusion Studio",
       verified: true
     },
     {
-      text: "Blazin Code took our industrial thermal energy modeling tools and turned them into a powerful, interactive clean-tech platform.",
+      text: "Blazin Code took our industrial thermal energy modeling tools and turned them into a powerful, interactive clean-tech SaaS platform.",
       author: "Chief Technology Officer, Exergy3",
       verified: true
     }
@@ -74,7 +74,7 @@ const Testimonials = () => {
           <span style={{ textDecoration: 'underline', color: '#555' }}>Verified by Clutch™ reviews</span>
         </div>
         <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 500, lineHeight: 1.1, letterSpacing: '-0.03em', maxWidth: '800px', margin: '0 auto' }}>
-          Trusted by product teams<br/>across the US and Europe
+          Trusted by product teams<br/>across the US, Europe & MENA
         </h2>
       </div>
 

@@ -8,13 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const featuredWorks = [
   // 1. FinTech & DeFi
-  projectsData.find(p => p.id === 'fireball-finance') || projectsData[1],
+
   // 2. Cloud Design & SaaS
-  projectsData.find(p => p.id === 'plasfy') || projectsData[9],
+  projectsData.find(p => p.id === 'exergy3') || projectsData[4], projectsData.find(p => p.id === 'mojek-money') || projectsData[7], projectsData.find(p => p.id === 'elica') || projectsData[6], projectsData.find(p => p.id === 'dshcp') || projectsData[11],
   // 3. E-Commerce & Luxury Lifestyle
-  projectsData.find(p => p.id === 'bathing-culture') || projectsData[0],
+
   // 4. Industrial CleanTech & Energy
-  projectsData.find(p => p.id === 'exergy3') || projectsData[4],
+
 ];
 
 const Works = () => {
@@ -64,7 +64,7 @@ const Works = () => {
             Flagship Industry Case Studies (4)
           </div>
           <p style={{ margin: 0, color: 'var(--text-light)', fontSize: '0.95rem' }}>
-            Spotlighting top builds across FinTech, SaaS, E-Commerce & CleanTech
+            Spotlighting flagship builds across CleanTech, FinTech, Enterprise Consumer Tech & Healthcare EdTech
           </p>
         </div>
         <a 
@@ -111,7 +111,7 @@ const Works = () => {
             borderRadius: '20px',
             boxShadow: '0 0 10px rgba(22, 100, 246, 0.6)'
           }}>
-            10 Projects
+            {projectsData.length} Projects
           </span>
           <span>in Services</span>
           <span style={{ 
@@ -201,11 +201,11 @@ const Works = () => {
                        width: '100%', 
                        height: '100%', 
                        objectFit: 'cover',
-                       objectPosition: 'top center',
+                       objectPosition: 'center center', transform: 'scale(1.06)',
                        transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
                      }} 
-                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
-                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.09)'}
+                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
                    />
 
                    {/* Subtle Bottom Gradient Overlay with title and prompt */}
